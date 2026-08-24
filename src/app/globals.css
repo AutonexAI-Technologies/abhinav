@@ -300,6 +300,11 @@ input, textarea, select { font-family: var(--ff-body); }
 @keyframes pulse-live { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.55)} 50%{box-shadow:0 0 0 8px rgba(34,197,94,0)} }
 @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes ticker-scroll { from { transform: translateX(0) } to { transform: translateX(-33.333%) } }
+@keyframes role-slide-in { from { opacity:0; transform:translateY(100%) } to { opacity:1; transform:translateY(0) } }
+@keyframes popup-in  { from { opacity:0; transform:scale(0.92) translateY(20px) } to { opacity:1; transform:scale(1) translateY(0) } }
+@keyframes popup-out { from { opacity:1; transform:scale(1) translateY(0) } to { opacity:0; transform:scale(0.94) translateY(12px) } }
+@keyframes fade-out  { from { opacity:1 } to { opacity:0 } }
 
 /* ============================================================
    UTILS
@@ -369,3 +374,124 @@ input, textarea, select { font-family: var(--ff-body); }
 .accord-btn:hover { background: rgba(16,17,28,0.9); }
 .accord-body { padding: 0 24px 20px; font-size: 0.925rem; color: var(--muted); line-height: 1.85; }
 
+
+/* ============================================================
+   COMPREHENSIVE RESPONSIVE — phones → tablets → laptops → TVs
+   ============================================================ */
+
+/* Prevent overflow globally */
+html, body { overflow-x: hidden; }
+img, video, canvas, svg { max-width: 100%; display: block; }
+
+/* Wide desktop / TV */
+@media (min-width: 1920px) {
+  :root { --sec-py: 140px; }
+  .container { max-width: 1600px; }
+}
+@media (min-width: 2560px) {
+  .container { max-width: 2000px; }
+}
+
+/* ── Tablet landscape (iPad Pro, Surface) ── */
+@media (max-width: 1180px) {
+  .container { padding: 0 28px; }
+}
+
+/* ── Tablet portrait (768–1024) ── */
+@media (max-width: 1024px) {
+  :root { --sec-py: 80px; }
+  .container { padding: 0 24px; }
+  .calc-card { padding: 28px 22px; }
+  .calc-result-card { padding: 24px 18px; }
+  .article-body { font-size: 1rem; }
+  /* Blog article: sidebar collapses below content */
+  .article-body + aside,
+  section aside[style*="sticky"] { position: static !important; top: auto !important; }
+}
+
+/* ── Tablet / large phone (600–900) ── */
+@media (max-width: 900px) {
+  :root { --sec-py: 72px; }
+  .container { padding: 0 20px; }
+  /* 3-col → 2-col */
+  [style*="repeat(3,1fr)"], [style*="repeat(3, 1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  /* Blog grid in article sidebar */
+  [style*="1fr 300px"], [style*="1fr 340px"] {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  [style*="1fr 300px"] > aside,
+  [style*="1fr 340px"] > aside { position: static !important; }
+}
+
+/* ── Phone landscape / small tablet (600–768) ── */
+@media (max-width: 768px) {
+  :root { --sec-py: 64px; }
+  .container { padding: 0 18px; }
+  /* 2-col grids → 1-col (but keep calculator sub-grids) */
+  [style*="grid-template-columns: 1fr 1fr"]:not([class*="calc"]),
+  [style*="gridTemplateColumns: \"1fr 1fr\""]:not([class*="calc"]) {
+    grid-template-columns: 1fr !important;
+  }
+  /* Tools hub alternating cards */
+  [style*="1fr 2fr"], [style*="2fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Popup */
+  [role="dialog"] > div[style*="maxWidth"] {
+    max-width: calc(100vw - 24px) !important;
+    border-radius: var(--r-xl) !important;
+  }
+  /* Buttons */
+  .btn-lg { width: 100% !important; justify-content: center !important; }
+  /* Section headings */
+  .d-hero { font-size: clamp(2.2rem, 8vw, 4rem) !important; }
+  .d-xl   { font-size: clamp(1.8rem, 6vw, 3rem) !important; }
+}
+
+/* ── Phone portrait (≤ 640px) ── */
+@media (max-width: 640px) {
+  :root { --sec-py: 52px; }
+  .container { padding: 0 16px; }
+  /* All 2-col grids → single column */
+  [style*="repeat(2,1fr)"], [style*="repeat(2, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Blog hero image height */
+  [style*="clamp(320px, 45vh"] { height: 240px !important; }
+  /* Article body */
+  .article-body { font-size: 0.95rem; }
+  .article-body h2 { font-size: 1.4rem; }
+  /* Calc */
+  .calc-card { padding: 18px 14px; }
+  /* Accordion */
+  .accord-btn { font-size: 0.88rem; padding: 16px 16px; gap: 10px; }
+  /* Legal */
+  .legal-body { font-size: 0.95rem; }
+  .legal-body h2 { font-size: 1.1rem; }
+}
+
+/* ── Small phone (≤ 480px) ── */
+@media (max-width: 480px) {
+  :root { --sec-py: 44px; }
+  .container { padding: 0 14px; }
+  .d-hero { font-size: clamp(1.9rem, 9vw, 3rem) !important; }
+  .d-xl   { font-size: clamp(1.5rem, 7vw, 2.4rem) !important; }
+  /* All 3-col → 1-col  */
+  [style*="repeat(3"] { grid-template-columns: 1fr !important; }
+  /* Pricing cards, blog cards */
+  [style*="repeat(3,1fr)"], [style*="repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  .btn { font-size: 0.82rem; padding: 0.75rem 1.4rem; }
+  .btn-sm { font-size: 0.72rem; padding: 0.5rem 0.9rem; }
+}
+
+/* ── Very small phone (≤ 375px / older Androids) ── */
+@media (max-width: 375px) {
+  .container { padding: 0 12px; }
+  .d-hero { font-size: 1.7rem !important; }
+  .btn-lg { font-size: 0.82rem; padding: 0.8rem 1.2rem; }
+}

@@ -1,0 +1,54 @@
+/* ── Services Ticker — full-width infinite marquee ── */
+
+.strip {
+  width: 100%;
+  overflow: hidden;
+  background: rgba(0,200,240,0.04);
+  border-top: 1px solid rgba(0,200,240,0.10);
+  border-bottom: 1px solid rgba(0,200,240,0.10);
+  padding: 14px 0;
+  /* fade edges */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
+  position: relative;
+  z-index: 5;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  /* 32s for comfortable speed — pause on hover */
+  animation: ticker-scroll 32s linear infinite;
+}
+
+.strip:hover .track {
+  animation-play-state: paused;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 28px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.item:hover { color: var(--blue-light); }
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+/* The keyframe lives in globals.css as ticker-scroll */

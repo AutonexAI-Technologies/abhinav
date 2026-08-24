@@ -115,16 +115,7 @@ export default function Hero() {
               View Services
             </Link>
           </div>
-
-          {/* Services quick-view */}
-          <div className={styles.services}>
-            {["Resistance Training", "Personal Training", "Meal & Workouts", "Cardio Exercises"].map(s => (
-              <div key={s} className={styles.serviceChip}>
-                <span className={styles.serviceChipDot} />
-                {s}
-              </div>
-            ))}
-          </div>
+          {/* CTA row only – ticker moved to a separate full-width section */}
         </div>
 
         {/* ── RIGHT IMAGE ── */}

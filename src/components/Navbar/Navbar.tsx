@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import styles from "./Navbar.module.css";
 
 const NAV = [
+  { label: "Home",            href: "/" },
   { label: "About",           href: "/about" },
   { label: "Services",        href: "/services" },
   { label: "Diet Plans",      href: "/diet-plans" },
