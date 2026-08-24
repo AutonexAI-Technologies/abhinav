@@ -1,0 +1,226 @@
+.header {
+  text-align: center;
+  margin-bottom: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.tab {
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  transition: all var(--transition-base);
+  font-family: var(--font-heading);
+}
+
+.tab:hover { color: var(--color-text); }
+
+.activeTab {
+  background: var(--grad-blue);
+  color: #fff;
+  box-shadow: 0 2px 16px rgba(0,168,255,0.3);
+}
+
+/* Consultation cards */
+.consultCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.consultCard {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.consultCard:hover {
+  border-color: var(--color-border);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-blue);
+}
+
+.popularCard {
+  border-color: var(--color-blue);
+  background: linear-gradient(145deg, rgba(0,168,255,0.08) 0%, rgba(0,71,171,0.05) 100%);
+  box-shadow: 0 0 40px rgba(0,168,255,0.12);
+}
+
+.popularBadge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--grad-blue);
+  color: #fff;
+  padding: 5px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,168,255,0.4);
+}
+
+.planEmoji {
+  font-size: 2.5rem;
+}
+
+.planTitle {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.planMeta {
+  display: flex;
+  gap: 16px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.priceBlock {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.originalPrice {
+  font-size: 1rem;
+  color: var(--color-text-dim);
+  text-decoration: line-through;
+}
+
+.discountedPrice {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-text);
+}
+
+.discountBadge {
+  font-size: 0.75rem !important;
+  padding: 4px 10px !important;
+}
+
+.featureList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+.featureCheck {
+  color: var(--color-blue);
+  flex-shrink: 0;
+}
+
+.planBtn {
+  width: 100%;
+  margin-top: auto;
+  padding: 14px;
+}
+
+/* Online cards */
+.onlineCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.onlineCard {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.onlineCard:hover {
+  border-color: var(--color-border);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-blue);
+}
+
+.onlineCard.popularCard {
+  border-color: var(--color-blue);
+  background: linear-gradient(145deg, rgba(0,168,255,0.08) 0%, rgba(0,71,171,0.05) 100%);
+}
+
+.onlinePlanTitle {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.onlinePrice {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.onlinePriceNum {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-blue);
+}
+
+.onlinePricePer {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .onlineCards { grid-template-columns: 1fr; }
+  .consultCards { grid-template-columns: 1fr; }
+}

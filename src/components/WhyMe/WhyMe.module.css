@@ -1,0 +1,113 @@
+.header {
+  text-align: center;
+  margin-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  transition: all var(--transition-base);
+}
+
+.card:hover {
+  border-color: rgba(0, 168, 255, 0.2);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-blue);
+}
+
+.highlighted {
+  background: linear-gradient(145deg, rgba(0, 168, 255, 0.12) 0%, rgba(0, 71, 171, 0.08) 100%);
+  border-color: var(--color-border);
+  box-shadow: 0 0 40px rgba(0, 168, 255, 0.1);
+  transform: translateY(-8px);
+}
+
+.highlighted:hover {
+  transform: translateY(-12px);
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.highlighted .cardTitle {
+  color: var(--color-blue);
+  border-color: var(--color-border);
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.highlighted .item {
+  color: rgba(240, 244, 255, 0.85);
+}
+
+.checkIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0, 168, 255, 0.15);
+  color: var(--color-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.highlighted .checkIcon {
+  background: rgba(0, 168, 255, 0.25);
+}
+
+.cta {
+  text-align: center;
+  margin-top: 56px;
+}
+
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .highlighted {
+    transform: none;
+    order: -1;
+  }
+
+  .highlighted:hover {
+    transform: translateY(-4px);
+  }
+}
