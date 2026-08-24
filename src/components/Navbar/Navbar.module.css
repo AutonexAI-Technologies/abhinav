@@ -4,46 +4,103 @@
   transition: background 0.4s ease, border-bottom 0.4s ease;
 }
 .scrolled {
-  background: rgba(7,8,15,0.92);
+  background: rgba(7,8,15,0.96);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
   border-bottom: 1px solid rgba(0,200,240,0.10);
   box-shadow: 0 4px 40px rgba(0,0,0,0.6);
 }
-.inner { height:100%; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.inner { height:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; }
 
-.logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
+.logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; z-index:201; }
 .logoMark {
   width:34px; height:34px; border-radius:8px;
   background: linear-gradient(135deg,#00C8F0,#005f77);
   color:#07080f; font-family:var(--ff-display); font-size:1.1rem;
-  display:flex; align-items:center; justify-content:center;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
 .logoText { font-family:var(--ff-ui); font-size:0.9rem; font-weight:700; letter-spacing:0.08em; color:var(--cream); text-transform:uppercase; }
 .logoText em { color:var(--blue); font-style:normal; }
 
 .links { display:flex; align-items:center; gap:2px; flex:1; justify-content:center; }
-.link { font-size:0.82rem; font-weight:500; color:var(--muted); padding:8px 14px; border-radius:var(--r-pill); transition:color .2s,background .2s; }
+.link { font-size:0.82rem; font-weight:500; color:var(--muted); padding:8px 12px; border-radius:var(--r-pill); transition:color .2s,background .2s; white-space:nowrap; }
 .link:hover { color:var(--cream); background:rgba(255,255,255,0.04); }
 .active { color:var(--blue) !important; background:var(--blue-subtle) !important; }
 
-.cta { display:flex; align-items:center; gap:12px; flex-shrink:0; }
-.burger { display:none; color:var(--muted); padding:4px; }
+.cta { display:flex; align-items:center; gap:10px; flex-shrink:0; z-index:201; }
+.burger { display:none; color:var(--muted); padding:6px; cursor:pointer; z-index:201; }
 
+/* ── Mobile drawer ── */
 .drawer {
-  position:fixed; inset:0; z-index:199;
-  background:rgba(7,8,15,0.97); backdrop-filter:blur(24px);
-  display:flex; align-items:center; justify-content:center;
-  opacity:0; pointer-events:none; transition:opacity .25s ease;
+  position: fixed;
+  top: var(--nav-h);   /* starts BELOW the navbar — never overlaps */
+  left: 0; right: 0; bottom: 0;
+  z-index: 199;
+  background: rgba(7,8,15,0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .28s ease;
+  overflow-y: auto;
 }
 .drawerOpen { opacity:1; pointer-events:all; }
-.drawerContent { display:flex; flex-direction:column; align-items:center; gap:8px; width:100%; padding:0 32px; }
-.drawerLink { font-family:var(--ff-display); font-size:clamp(1.8rem,5vw,2.8rem); color:var(--muted); padding:10px 24px; border-radius:var(--r-lg); width:100%; text-align:center; transition:color .2s; }
-.drawerLink:hover { color:var(--cream); }
+
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  padding: 24px 32px 40px;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.drawerLink {
+  font-family: var(--ff-display);
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  color: var(--muted);
+  padding: 10px 24px;
+  border-radius: var(--r-lg);
+  width: 100%;
+  text-align: center;
+  transition: color .2s, background .2s;
+  line-height: 1.2;
+}
+.drawerLink:hover { color:var(--cream); background:rgba(255,255,255,0.03); }
 .drawerActive { color:var(--blue) !important; }
+
+/* ── Responsive ── */
+@media (max-width:1100px) {
+  .link { font-size:0.78rem; padding:8px 10px; }
+}
 
 @media (max-width:900px) {
   .links { display:none; }
   .burger { display:flex; }
-  .cta .btn { display:none; }
+  /* Keep Book a Call button visible on tablet but hide text on very small */
+  .cta .btn { font-size:0.78rem; padding:0.5rem 1rem; }
+}
+
+@media (max-width:480px) {
+  .logoText { font-size:0.78rem; letter-spacing:0.04em; }
+  .cta .btn span { display:none; }   /* hide "Book a Call" text, show only icon */
+  .drawerLink { font-size:clamp(1.2rem,6vw,1.8rem); padding:8px 16px; }
+  .drawerContent { gap:0; padding:16px 20px 32px; }
+}
+
+@media (max-width:375px) {
+  .logoMark { width:28px; height:28px; font-size:0.9rem; }
+  .drawerLink { font-size:1.1rem; }
+}
+
+/* Very tall phones or landscape — ensure drawer scrolls if needed */
+@media (max-height:600px) {
+  .drawerContent { justify-content:flex-start; padding-top:20px; }
+  .drawerLink { font-size:1rem; padding:6px 16px; }
 }
