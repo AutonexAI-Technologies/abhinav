@@ -495,3 +495,78 @@ img, video, canvas, svg { max-width: 100%; display: block; }
   .d-hero { font-size: 1.7rem !important; }
   .btn-lg { font-size: 0.82rem; padding: 0.8rem 1.2rem; }
 }
+
+/* ============================================================
+   HORIZONTAL SNAP SCROLL — for all multi-col card grids on mobile
+   Applied globally to any element using repeat(3) or repeat(4) grids
+   ============================================================ */
+
+/* Utility class for any section that needs mobile swipe */
+.scroll-cards {
+  display: flex !important;
+  flex-direction: row !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  gap: 16px !important;
+  padding-bottom: 12px !important;
+}
+.scroll-cards::-webkit-scrollbar { display: none !important; }
+.scroll-cards > * {
+  flex: 0 0 min(280px, 78vw) !important;
+  scroll-snap-align: start !important;
+  min-width: 0 !important;
+}
+
+@media (max-width: 768px) {
+  /* ALL inline repeat(3,1fr) and repeat(4,1fr) grids → horizontal scroll on mobile */
+  [style*="repeat(3,1fr)"],
+  [style*="repeat(3, 1fr)"],
+  [style*="repeat(4,1fr)"],
+  [style*="repeat(4, 1fr)"] {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 16px !important;
+    padding-bottom: 12px !important;
+    /* Allow the container to bleed edge to edge for scroll feel */
+    margin-left: calc(-1 * var(--container-px, 20px));
+    margin-right: calc(-1 * var(--container-px, 20px));
+    padding-left: var(--container-px, 20px);
+    padding-right: var(--container-px, 20px);
+  }
+  [style*="repeat(3,1fr)"]::-webkit-scrollbar,
+  [style*="repeat(3, 1fr)"]::-webkit-scrollbar,
+  [style*="repeat(4,1fr)"]::-webkit-scrollbar,
+  [style*="repeat(4, 1fr)"]::-webkit-scrollbar { display: none; }
+
+  /* Cards inside these grids: fixed swipe width */
+  [style*="repeat(3,1fr)"] > *,
+  [style*="repeat(3, 1fr)"] > *,
+  [style*="repeat(4,1fr)"] > *,
+  [style*="repeat(4, 1fr)"] > * {
+    flex: 0 0 min(280px, 76vw) !important;
+    min-width: 0 !important;
+    scroll-snap-align: start !important;
+    width: min(280px, 76vw) !important;
+    max-width: none !important;
+  }
+
+  /* WhyMe grid (repeat(3, 1fr) in CSS module) — also scroll */
+}
+
+@media (max-width: 480px) {
+  [style*="repeat(3,1fr)"] > *,
+  [style*="repeat(3, 1fr)"] > *,
+  [style*="repeat(4,1fr)"] > *,
+  [style*="repeat(4, 1fr)"] > * {
+    flex: 0 0 min(260px, 82vw) !important;
+    width: min(260px, 82vw) !important;
+  }
+}

@@ -59,5 +59,61 @@
 .ctaBtns { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:8px; }
 
 /* Responsive */
-@media (max-width:1024px) { .sGrid { grid-template-columns:repeat(2,1fr) } .pGrid { grid-template-columns:1fr; max-width:420px; margin-inline:auto } }
-@media (max-width:768px)  { .aboutGrid,.tGrid { grid-template-columns:1fr } .aboutImg { height:320px } .tImgPair { display:none } .sGrid { grid-template-columns:1fr } }
+@media (max-width:1024px) {
+  .sGrid { grid-template-columns:repeat(2,1fr); }
+  .pGrid { grid-template-columns:1fr 1fr; }
+}
+
+@media (max-width:768px) {
+  /* About and Transformations: stack vertically */
+  .aboutGrid, .tGrid { grid-template-columns:1fr; gap:36px; }
+  .aboutImg { height:320px; }
+  .tImgPair { display:none; }
+  .sh { margin-bottom:40px; }
+
+  /* ── Service cards: horizontal snap scroll ── */
+  .sGrid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding-bottom: 16px;
+    /* hide scrollbar but keep scroll */
+    scrollbar-width: none;
+  }
+  .sGrid::-webkit-scrollbar { display: none; }
+  .sCard {
+    flex: 0 0 240px;
+    scroll-snap-align: start;
+    min-width: 240px;
+  }
+
+  /* ── Pricing cards: horizontal snap scroll ── */
+  .pGrid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding-bottom: 16px;
+    scrollbar-width: none;
+    margin-inline: 0;
+    max-width: none;
+  }
+  .pGrid::-webkit-scrollbar { display: none; }
+  .pCard {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    min-width: 280px;
+  }
+}
+
+@media (max-width:480px) {
+  .sCard { flex: 0 0 220px; min-width: 220px; }
+  .pCard { flex: 0 0 260px; min-width: 260px; }
+}
