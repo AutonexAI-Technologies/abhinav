@@ -1,114 +1,561 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Target, Zap, Heart, Trophy } from "lucide-react";
+import { ArrowRight, Target, Zap, Heart, Trophy, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "The story behind Abhinav Lifts — hybrid athlete, online coach, long-distance runner and content creator.",
+  title: "About Abhinav | Online Fitness Coach, Hybrid Athlete & Content Creator",
+  description:
+    "The story behind Abhinav Lifts — hybrid athlete, NASM-certified online coach, long-distance runner and content creator coaching clients across India, UAE & the UK.",
 };
 
 const VALUES = [
-  { icon: <Target size={22}/>, title: "Evidence-Based",    desc: "Every programme grounded in sports science. No fads, no bro-science — only what research supports." },
-  { icon: <Zap size={22}/>,    title: "Consistency First", desc: "Long-term results come from showing up every day. We build habits, not just workout plans." },
-  { icon: <Heart size={22}/>,  title: "Sustainable",       desc: "No crash diets. No burnout. Progress that fits your real life and lasts long-term." },
-  { icon: <Trophy size={22}/>, title: "Accountability",    desc: "Weekly check-ins, form reviews, WhatsApp support. You're never left guessing what to do next." },
+  {
+    icon: <Target size={20} />,
+    title: "Evidence-Based Coaching",
+    desc: "Every programme is grounded in exercise science and nutritional research. No fads, no bro-science — only what peer-reviewed evidence supports.",
+  },
+  {
+    icon: <Zap size={20} />,
+    title: "Consistency Over Intensity",
+    desc: "Long-term results come from showing up every single day — not from extreme, unsustainable efforts. We build habits that outlast motivation.",
+  },
+  {
+    icon: <Heart size={20} />,
+    title: "Sustainable by Design",
+    desc: "No crash diets. No burnout cycles. Progress that genuinely fits your lifestyle and creates lasting change, not temporary results.",
+  },
+  {
+    icon: <Trophy size={20} />,
+    title: "Real Accountability",
+    desc: "Weekly check-ins, form video reviews, and direct WhatsApp support Mon–Sat. You will never feel lost or unsupported on this journey.",
+  },
 ];
 
 const TIMELINE = [
-  { year: "2018", title: "Started Training",          desc: "Began the fitness journey from zero — self-taught through years of consistent research, trial, and dedication." },
-  { year: "2020", title: "First Powerlifting Meet",   desc: "Competed locally. Discovered the power of structured programming, periodisation, and smart recovery." },
-  { year: "2021", title: "Became a Hybrid Athlete",   desc: "Combined strength training with long-distance running. Competed in half-marathons while maintaining full strength." },
-  { year: "2022", title: "Launched Online Coaching",  desc: "Took on first remote clients. Built scalable systems for delivering personalised programmes fully via WhatsApp." },
-  { year: "2023", title: "Content Creation",          desc: "Launched @abhinav._lifts on Instagram and YouTube — science-backed training content to a growing community." },
-  { year: "2024", title: "Global Client Base",        desc: "Coaching clients across India, UAE, and the UK. Specialising in fat loss, muscle building, and hybrid performance." },
+  {
+    year: "2018",
+    title: "The Beginning",
+    desc: "Started training from zero with no coach, no gym experience — only curiosity and determination. Spent years learning through research, trial, and deliberate practice.",
+  },
+  {
+    year: "2020",
+    title: "Structured Programming",
+    desc: "Competed in a local powerlifting meet and discovered the power of periodised programming. This changed everything — training stopped being random and started producing real results.",
+  },
+  {
+    year: "2021",
+    title: "Becoming a Hybrid Athlete",
+    desc: "Combined heavy strength training with long-distance running — competing in half-marathons while maintaining full strength output. Proved that you don't have to choose between the two.",
+  },
+  {
+    year: "2022",
+    title: "First Coaching Clients",
+    desc: "Took on first remote clients and built scalable systems for delivering fully personalised programmes through WhatsApp. Quickly proved that online coaching could be just as effective as in-person.",
+  },
+  {
+    year: "2023",
+    title: "Content & Community",
+    desc: "Launched @abhinav_.lifts on Instagram and YouTube — creating science-backed fitness content for a growing community. The mission: make evidence-based training accessible to everyone.",
+  },
+  {
+    year: "2024",
+    title: "Global Reach",
+    desc: "Coaching clients across India, UAE, and the UK. Specialising in fat loss, muscle building, body recomposition, and hybrid performance programming for everyday people with busy lives.",
+  },
 ];
 
-const QUOTES = [
-  { q: "The secret of getting ahead is getting started.", a: "— Mark Twain" },
-  { q: "Take care of your body. It's the only place you have to live.", a: "— Jim Rohn" },
+const CREDENTIALS = [
+  "NASM Certified Personal Trainer",
+  "Hybrid Athlete — Strength & Endurance",
+  "Half-Marathon Competitor",
+  "Online Coaching — 200+ Clients",
+  "Clients in India, UAE & UK",
+  "Evidence-Based Programming",
 ];
 
 export default function AboutPage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section style={{padding:"80px 0 80px",borderBottom:"1px solid rgba(0,200,240,0.06)"}}>
-        <div className="container" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:72,alignItems:"center"}}>
-          <div style={{display:"flex",flexDirection:"column",gap:24}}>
-            <span className="eyebrow">About</span>
-            <h1 className="d-hero" style={{fontSize:"clamp(3rem,7vw,6rem)"}}>
-              Coach.<br/>Athlete.<br/><span className="text-blue">Creator.</span>
-            </h1>
-            <p style={{fontSize:"1.05rem",lineHeight:1.85,color:"var(--limestone)"}}>
-              I&apos;m Abhinav — an online fitness coach, hybrid athlete, long-distance runner, and content creator on a mission to help people build stronger bodies and more disciplined minds.
-            </p>
-            <p style={{fontSize:"0.95rem",lineHeight:1.8,color:"var(--muted)"}}>
-              My coaching is rooted in evidence-based programming, real consistency, and habits that genuinely fit your life — not extreme approaches that are impossible to maintain.
-            </p>
-            <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
-              {["📸 @abhinav._lifts","▶️ YouTube: AbhinavLiftsVlogs"].map(s=>(
-                <span key={s} style={{padding:"8px 16px",borderRadius:"9999px",border:"1px solid rgba(0,200,240,0.14)",fontSize:"0.78rem",color:"var(--muted)"}}>
-                  {s}
-                </span>
-              ))}
-            </div>
-            <Link href="/book" className="btn btn-primary" style={{width:"fit-content",display:"inline-flex",gap:8,alignItems:"center"}}>
-              Work With Me <ArrowRight size={16}/>
-            </Link>
-          </div>
-          <div style={{position:"relative",height:600,borderRadius:"var(--r-2xl)",overflow:"hidden",border:"1px solid rgba(0,200,240,0.10)"}}>
-            <Image src="/abhi-1.jpeg" alt="Abhinav" fill priority sizes="45vw" style={{objectFit:"cover",objectPosition:"top"}}/>
-            <div className="img-scrim"/>
-          </div>
-        </div>
-      </section>
-
-      {/* ── VALUES ── */}
-      <section className="section section-alt">
+      <section
+        style={{
+          background: "#09090b",
+          padding: "clamp(80px,10vw,120px) 0 clamp(60px,8vw,100px)",
+          borderBottom: "1px solid rgba(255,255,255,0.05)",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Ambient glow */}
+        <div
+          style={{
+            position: "absolute",
+            top: "-100px",
+            right: "-100px",
+            width: 600,
+            height: 600,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(0,200,240,0.07), transparent 65%)",
+            pointerEvents: "none",
+          }}
+        />
         <div className="container">
-          <div style={{textAlign:"center",marginBottom:60,display:"flex",flexDirection:"column",alignItems:"center",gap:14}}>
-            <span className="eyebrow">Philosophy</span>
-            <h2 className="d-xl">What I <span className="text-blue">Stand For</span></h2>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 72,
+              alignItems: "center",
+            }}
+          >
+            {/* Content */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+              <span
+                style={{
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: "0.72rem",
+                  letterSpacing: "0.28em",
+                  textTransform: "uppercase",
+                  color: "#00C8F0",
+                }}
+              >
+                About Abhinav
+              </span>
+
+              <h1
+                style={{
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: "clamp(3.5rem, 8vw, 7rem)",
+                  fontWeight: 400,
+                  letterSpacing: "0.02em",
+                  color: "#f5f0eb",
+                  lineHeight: 0.95,
+                }}
+              >
+                Coach.{" "}
+                <span style={{ color: "#00C8F0" }}>Athlete.</span>
+                <br />
+                Creator.
+              </h1>
+
+              <p
+                style={{
+                  fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)",
+                  lineHeight: 1.85,
+                  color: "rgba(255,255,255,0.55)",
+                  maxWidth: 460,
+                }}
+              >
+                I&apos;m Abhinav — an online fitness coach, hybrid athlete, long-distance runner, and content creator. My coaching is built on one principle: <strong style={{ color: "#f5f0eb" }}>real results come from real consistency, not shortcuts.</strong>
+              </p>
+
+              <p
+                style={{
+                  fontSize: "0.9rem",
+                  lineHeight: 1.8,
+                  color: "rgba(255,255,255,0.35)",
+                  maxWidth: 420,
+                }}
+              >
+                I work with clients across India, UAE, and the UK — helping them build stronger bodies and more disciplined minds through evidence-based programming and direct, personal support.
+              </p>
+
+              {/* Credentials */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "8px 16px",
+                }}
+              >
+                {CREDENTIALS.map((c) => (
+                  <div
+                    key={c}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                      fontSize: "0.78rem",
+                      color: "rgba(255,255,255,0.45)",
+                    }}
+                  >
+                    <CheckCircle2 size={13} color="#00C8F0" strokeWidth={2} />
+                    {c}
+                  </div>
+                ))}
+              </div>
+
+              {/* Socials */}
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                {[
+                  { label: "Instagram: @abhinav_.lifts", href: "https://www.instagram.com/abhinav_.lifts/" },
+                  { label: "abhinavlifts05@gmail.com", href: "mailto:abhinavlifts05@gmail.com" },
+                ].map((s) => (
+                  <a
+                    key={s.href}
+                    href={s.href}
+                    target={s.href.startsWith("http") ? "_blank" : undefined}
+                    rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    style={{
+                      padding: "7px 16px",
+                      borderRadius: 999,
+                      border: "1px solid rgba(255,255,255,0.10)",
+                      fontSize: "0.75rem",
+                      color: "rgba(255,255,255,0.45)",
+                      textDecoration: "none",
+                      transition: "border-color 0.2s, color 0.2s",
+                    }}
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </div>
+
+              <Link
+                href="/book"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "0.9rem 2rem",
+                  borderRadius: 999,
+                  background: "#00C8F0",
+                  color: "#09090b",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "0.875rem",
+                  textDecoration: "none",
+                  width: "fit-content",
+                  boxShadow: "0 4px 24px rgba(0,200,240,0.28)",
+                  transition: "background 0.2s, transform 0.2s",
+                }}
+              >
+                Work With Me <ArrowRight size={15} />
+              </Link>
+            </div>
+
+            {/* Image */}
+            <div
+              style={{
+                position: "relative",
+                height: "clamp(480px, 65vh, 680px)",
+                borderRadius: 20,
+                overflow: "hidden",
+                border: "1px solid rgba(255,255,255,0.06)",
+              }}
+            >
+              <Image
+                src="/abhi-2.jpeg"
+                alt="Abhinav – Online Fitness Coach"
+                fill
+                priority
+                sizes="45vw"
+                style={{ objectFit: "cover", objectPosition: "top" }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "linear-gradient(to top, rgba(9,9,11,0.7) 0%, transparent 50%)",
+                }}
+              />
+            </div>
           </div>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:20}}>
-            {VALUES.map(v=>(
-              <div key={v.title} className="glass-blue" style={{padding:"28px 24px",display:"flex",flexDirection:"column",gap:14}}>
-                <div style={{width:50,height:50,borderRadius:"var(--r-md)",background:"var(--blue-subtle)",border:"1px solid var(--blue-border)",display:"flex",alignItems:"center",justifyContent:"center",color:"var(--blue)"}}>{v.icon}</div>
-                <h3 style={{fontFamily:"var(--ff-ui)",fontWeight:600,fontSize:"1rem",color:"var(--cream)"}}>{v.title}</h3>
-                <p style={{fontSize:"0.84rem",color:"var(--muted)",lineHeight:1.78}}>{v.desc}</p>
+        </div>
+      </section>
+
+      {/* ── PHILOSOPHY ── */}
+      <section
+        style={{
+          background: "#0c0c10",
+          padding: "clamp(80px,10vw,120px) 0",
+          borderBottom: "1px solid rgba(255,255,255,0.05)",
+        }}
+      >
+        <div className="container">
+          <div
+            style={{
+              textAlign: "center",
+              marginBottom: 64,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 14,
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "0.72rem",
+                letterSpacing: "0.28em",
+                textTransform: "uppercase",
+                color: "#00C8F0",
+              }}
+            >
+              Philosophy
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "clamp(2.5rem, 5vw, 4rem)",
+                fontWeight: 400,
+                letterSpacing: "0.02em",
+                color: "#f5f0eb",
+                lineHeight: 1.05,
+              }}
+            >
+              What I <span style={{ color: "#00C8F0" }}>Stand For</span>
+            </h2>
+            <p
+              style={{
+                fontSize: "0.9rem",
+                lineHeight: 1.8,
+                color: "rgba(255,255,255,0.38)",
+                maxWidth: 480,
+              }}
+            >
+              These are not just values on a page — they are the principles that shape every programme, every check-in, and every conversation with a client.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: 16,
+            }}
+          >
+            {VALUES.map((v) => (
+              <div
+                key={v.title}
+                style={{
+                  padding: "32px 24px",
+                  background: "#09090b",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                  borderRadius: 16,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 16,
+                  transition: "border-color 0.3s",
+                }}
+              >
+                <div
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: 12,
+                    background: "rgba(0,200,240,0.08)",
+                    border: "1px solid rgba(0,200,240,0.14)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#00C8F0",
+                  }}
+                >
+                  {v.icon}
+                </div>
+                <h3
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "0.95rem",
+                    color: "#f5f0eb",
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {v.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "0.84rem",
+                    lineHeight: 1.78,
+                    color: "rgba(255,255,255,0.38)",
+                  }}
+                >
+                  {v.desc}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── MOTIVATIONAL QUOTE ── */}
-      <section style={{padding:"60px 0",textAlign:"center"}}>
-        <div className="container" style={{maxWidth:640,margin:"0 auto"}}>
-          <span style={{fontFamily:"var(--ff-display)",fontSize:"4rem",color:"var(--blue)",lineHeight:1,display:"block",marginBottom:14}}>"</span>
-          <p style={{fontFamily:"var(--ff-display)",fontSize:"clamp(1.5rem,3vw,2.2rem)",color:"var(--cream)",lineHeight:1.4,marginBottom:12}}>{QUOTES[0].q}</p>
-          <p style={{fontSize:"0.75rem",color:"var(--faint)",letterSpacing:"0.15em",textTransform:"uppercase"}}>{QUOTES[0].a}</p>
+      {/* ── QUOTE BREAK ── */}
+      <section
+        style={{
+          background: "#09090b",
+          padding: "clamp(60px,8vw,100px) 0",
+          textAlign: "center",
+          borderBottom: "1px solid rgba(255,255,255,0.05)",
+        }}
+      >
+        <div className="container" style={{ maxWidth: 680, margin: "0 auto" }}>
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)",
+              fontStyle: "italic",
+              color: "#f5f0eb",
+              lineHeight: 1.4,
+              marginBottom: 16,
+            }}
+          >
+            &ldquo;Discipline is choosing what you want most over what you want now.&rdquo;
+          </p>
+          <p
+            style={{
+              fontSize: "0.72rem",
+              color: "rgba(255,255,255,0.25)",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+            }}
+          >
+            — Abraham Lincoln
+          </p>
         </div>
       </section>
 
-      {/* ── TIMELINE ── */}
-      <section className="section section-alt">
-        <div className="container" style={{maxWidth:740,margin:"0 auto"}}>
-          <div style={{textAlign:"center",marginBottom:60,display:"flex",flexDirection:"column",alignItems:"center",gap:14}}>
-            <span className="eyebrow">Journey</span>
-            <h2 className="d-xl">The Road <span className="text-blue">Here</span></h2>
+      {/* ── JOURNEY / TIMELINE ── */}
+      <section
+        style={{
+          background: "#0c0c10",
+          padding: "clamp(80px,10vw,120px) 0",
+          borderBottom: "1px solid rgba(255,255,255,0.05)",
+        }}
+      >
+        <div className="container">
+          <div
+            style={{
+              textAlign: "center",
+              marginBottom: 72,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 14,
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "0.72rem",
+                letterSpacing: "0.28em",
+                textTransform: "uppercase",
+                color: "#00C8F0",
+              }}
+            >
+              The Journey
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "clamp(2.5rem, 5vw, 4rem)",
+                fontWeight: 400,
+                letterSpacing: "0.02em",
+                color: "#f5f0eb",
+                lineHeight: 1.05,
+              }}
+            >
+              The Road <span style={{ color: "#00C8F0" }}>Here</span>
+            </h2>
+            <p
+              style={{
+                fontSize: "0.9rem",
+                lineHeight: 1.8,
+                color: "rgba(255,255,255,0.35)",
+                maxWidth: 440,
+              }}
+            >
+              Six years of building from scratch — not a shortcut in sight. Every year taught a new lesson that now shapes how I coach.
+            </p>
           </div>
-          <div style={{display:"flex",flexDirection:"column"}}>
-            {TIMELINE.map((m,i)=>(
-              <div key={m.year} style={{display:"grid",gridTemplateColumns:"64px 1fr",gap:24}}>
-                <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
-                  <div style={{width:44,height:44,borderRadius:"50%",background:"var(--blue-subtle)",border:"1.5px solid var(--blue-border)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--ff-ui)",fontWeight:700,fontSize:"0.68rem",color:"var(--blue)",flexShrink:0}}>{m.year}</div>
-                  {i<TIMELINE.length-1&&<div style={{width:1,flex:1,marginTop:8,background:"linear-gradient(to bottom,rgba(0,200,240,0.3),transparent)",minHeight:36}}/>}
+
+          <div
+            style={{
+              maxWidth: 720,
+              margin: "0 auto",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {TIMELINE.map((m, i) => (
+              <div
+                key={m.year}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "80px 1fr",
+                  gap: 28,
+                }}
+              >
+                {/* Year + connector line */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 52,
+                      height: 52,
+                      borderRadius: "50%",
+                      background: "rgba(0,200,240,0.08)",
+                      border: "1px solid rgba(0,200,240,0.18)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontFamily: "'Bebas Neue', sans-serif",
+                      fontSize: "0.85rem",
+                      letterSpacing: "0.08em",
+                      color: "#00C8F0",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {m.year}
+                  </div>
+                  {i < TIMELINE.length - 1 && (
+                    <div
+                      style={{
+                        width: 1,
+                        flex: 1,
+                        marginTop: 8,
+                        background:
+                          "linear-gradient(to bottom, rgba(0,200,240,0.20), transparent)",
+                        minHeight: 40,
+                      }}
+                    />
+                  )}
                 </div>
-                <div style={{paddingTop:8,paddingBottom:i<TIMELINE.length-1?36:0}}>
-                  <h3 style={{fontFamily:"var(--ff-ui)",fontWeight:600,fontSize:"1.05rem",color:"var(--cream)",marginBottom:8}}>{m.title}</h3>
-                  <p style={{fontSize:"0.875rem",color:"var(--muted)",lineHeight:1.8}}>{m.desc}</p>
+
+                {/* Content */}
+                <div
+                  style={{
+                    paddingTop: 10,
+                    paddingBottom: i < TIMELINE.length - 1 ? 40 : 0,
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 700,
+                      fontSize: "1rem",
+                      color: "#f5f0eb",
+                      marginBottom: 10,
+                    }}
+                  >
+                    {m.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "rgba(255,255,255,0.42)",
+                      lineHeight: 1.82,
+                    }}
+                  >
+                    {m.desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -116,13 +563,96 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── QUOTE ── */}
-      <section style={{padding:"60px 0",textAlign:"center"}}>
-        <div className="container" style={{maxWidth:640,margin:"0 auto"}}>
-          <span style={{fontFamily:"var(--ff-display)",fontSize:"4rem",color:"var(--blue)",lineHeight:1,display:"block",marginBottom:14}}>"</span>
-          <p style={{fontFamily:"var(--ff-display)",fontSize:"clamp(1.5rem,3vw,2.2rem)",color:"var(--cream)",lineHeight:1.4,marginBottom:12}}>{QUOTES[1].q}</p>
-          <p style={{fontSize:"0.75rem",color:"var(--faint)",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:36}}>{QUOTES[1].a}</p>
-          <Link href="/book" className="btn btn-primary btn-lg">Start Your Transformation <ArrowRight size={16}/></Link>
+      {/* ── FINAL CTA ── */}
+      <section
+        style={{
+          background: "#09090b",
+          padding: "clamp(80px,10vw,120px) 0",
+          textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
+            width: 600,
+            height: 300,
+            background:
+              "radial-gradient(ellipse, rgba(0,200,240,0.09), transparent 65%)",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          className="container"
+          style={{
+            maxWidth: 580,
+            margin: "0 auto",
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 24,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "'Bebas Neue', sans-serif",
+              fontSize: "0.72rem",
+              letterSpacing: "0.28em",
+              textTransform: "uppercase",
+              color: "#00C8F0",
+            }}
+          >
+            Ready?
+          </span>
+          <h2
+            style={{
+              fontFamily: "'Bebas Neue', sans-serif",
+              fontSize: "clamp(3rem, 6vw, 5rem)",
+              fontWeight: 400,
+              letterSpacing: "0.02em",
+              color: "#f5f0eb",
+              lineHeight: 1.05,
+            }}
+          >
+            Start Your<br />
+            <span style={{ color: "#00C8F0" }}>Transformation</span>
+          </h2>
+          <p
+            style={{
+              fontSize: "0.9rem",
+              lineHeight: 1.8,
+              color: "rgba(255,255,255,0.38)",
+              maxWidth: 400,
+            }}
+          >
+            Fill the intake form — Abhinav reviews every submission personally and
+            responds on WhatsApp within 24 hours.
+          </p>
+          <Link
+            href="/book"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "0.9rem 2.4rem",
+              borderRadius: 999,
+              background: "#00C8F0",
+              color: "#09090b",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 700,
+              fontSize: "0.9rem",
+              textDecoration: "none",
+              boxShadow: "0 4px 28px rgba(0,200,240,0.32)",
+              transition: "background 0.2s, transform 0.2s",
+            }}
+          >
+            Work With Me <ArrowRight size={15} />
+          </Link>
         </div>
       </section>
     </>

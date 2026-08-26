@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronUp, Flame, Zap, Target } from "lucide-react";
 
 const ACTIVITY = [
   { label: "Sedentary — Office job, little to no movement", factor: 1.2 },
@@ -43,12 +43,37 @@ const FAQ = [
 ];
 
 const INDIAN_TIPS = [
-  { emoji: "🍛", title: "Rice & Roti Are Not the Enemy", tip: "They're calorie-dense and easy to overeat — but they're not bad foods. Measure portions (1 cup cooked rice ≈ 210 kcal) and balance with protein at every meal." },
-  { emoji: "🛢️", title: "Cooking Oil Is a Hidden Calorie Bomb", tip: "1 tablespoon of any cooking oil — groundnut, coconut, ghee — is approximately 120 kcal. Switching to a non-stick pan and halving your oil use can save 200–300 kcal per day without changing what you eat." },
-  { emoji: "☕", title: "Chai & Coffee Add Up Fast", tip: "A typical Indian chai with 2 tsp sugar and 50ml full-fat milk = 60–80 kcal per cup. If you drink 4–6 cups a day, that's 240–480 kcal before you've eaten a single meal." },
-  { emoji: "🏠", title: "Home vs Restaurant: A 400 kcal Gap", tip: "The same dish can vary dramatically in calories depending on preparation. A restaurant butter chicken portion can be 600–900 kcal vs 350–450 kcal for a home-cooked equivalent. Cooking at home is genuinely the most powerful calorie-control tool available." },
-  { emoji: "🌿", title: "Allam (Ginger) Chutney Over Heavy Chutneys", tip: "Traditional chutneys made with peanuts, tamarind, and oil can be 100–200 kcal per serving. Ginger chutney (allam pachadi) made without excessive oil is far lower in calories and has anti-inflammatory properties." },
+  { title: "Rice & Roti Are Not the Enemy", tip: "They're calorie-dense and easy to overeat — but they're not bad foods. Measure portions (1 cup cooked rice ≈ 210 kcal) and balance with protein at every meal." },
+  { title: "Cooking Oil Is a Hidden Calorie Source", tip: "1 tablespoon of any cooking oil — groundnut, coconut, ghee — is approximately 120 kcal. Halving your oil use can save 200–300 kcal per day without changing what you eat." },
+  { title: "Chai & Coffee Add Up Fast", tip: "A typical Indian chai with 2 tsp sugar and 50ml full-fat milk = 60–80 kcal per cup. Drinking 4–6 cups a day adds 240–480 kcal before you've eaten a single meal." },
+  { title: "Home vs Restaurant: A 400 kcal Gap", tip: "The same dish can vary dramatically in calories depending on preparation. A restaurant butter chicken can be 600–900 kcal vs 350–450 kcal home-cooked. Cooking at home is the most powerful calorie-control tool available." },
+  { title: "Prioritise Protein at Every Meal", tip: "Most Indian meals are carb and fat heavy with very little protein. Aim to add a protein source to every meal — dal, curd, paneer, eggs, or chicken — to hit your daily protein target." },
 ];
+
+const inputCls = {
+  width: "100%",
+  background: "rgba(255,255,255,0.04)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: 10,
+  padding: "11px 14px",
+  fontSize: "0.875rem",
+  color: "#f5f0eb",
+  outline: "none",
+  fontFamily: "'Inter', sans-serif",
+  boxSizing: "border-box" as const,
+  appearance: "none" as const,
+  transition: "border-color 0.2s",
+};
+
+const labelCls = {
+  display: "block",
+  fontSize: "0.65rem",
+  fontWeight: 700,
+  letterSpacing: "0.1em",
+  textTransform: "uppercase" as const,
+  color: "rgba(255,255,255,0.38)",
+  marginBottom: 6,
+};
 
 export default function CalorieCalculatorPage() {
   const [form, setForm] = useState({ age: "", gender: "male", weight: "", height: "", activity: "1.55", goal: "0" });
@@ -74,184 +99,259 @@ export default function CalorieCalculatorPage() {
     const adj = parseFloat(form.goal);
     if (adj < 0) return "Fat Loss";
     if (adj === 0) return "Maintenance";
-    return "Lean Bulk / Muscle Gain";
+    return "Muscle Gain";
+  };
+
+  const getGoalColor = () => {
+    const adj = parseFloat(form.goal);
+    if (adj < 0) return "#00C8F0";
+    if (adj === 0) return "#f59e0b";
+    return "#a855f7";
   };
 
   return (
     <>
-      <section style={{ padding: "80px 0 48px", borderBottom: "1px solid rgba(0,200,240,0.06)", textAlign: "center" }}>
-        <div className="container">
-          <span className="eyebrow" style={{ display: "block", marginBottom: 16 }}>Free Tool</span>
-          <h1 className="d-hero" style={{ fontSize: "clamp(2.4rem,5vw,4.5rem)", marginBottom: 16 }}>
-            Calorie & <span className="text-blue">TDEE Calculator</span>
+      {/* ── HERO ── */}
+      <section style={{ background: "#09090b", padding: "clamp(72px,9vw,110px) 0 clamp(48px,6vw,72px)", borderBottom: "1px solid rgba(255,255,255,0.05)", textAlign: "center", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 600, height: 280, background: "radial-gradient(ellipse, rgba(0,200,240,0.07), transparent 65%)", pointerEvents: "none" }} />
+        <div className="container" style={{ position: "relative" }}>
+          <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "0.68rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "#00C8F0", display: "block", marginBottom: 16 }}>Free Tool</span>
+          <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2.8rem,6vw,5.5rem)", fontWeight: 400, letterSpacing: "0.02em", color: "#f5f0eb", lineHeight: 1, marginBottom: 18 }}>
+            Calorie & <span style={{ color: "#00C8F0" }}>TDEE Calculator</span>
           </h1>
-          <p style={{ fontSize: "1.05rem", color: "var(--muted)", maxWidth: 560, margin: "0 auto", lineHeight: 1.78 }}>
+          <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.42)", maxWidth: 520, margin: "0 auto", lineHeight: 1.8 }}>
             Find your exact daily calorie needs using the Mifflin-St Jeor equation — the gold standard in calorie estimation. Built with Indian diets in mind.
           </p>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
+      {/* ── CALCULATOR ── */}
+      <section style={{ background: "#0c0c10", padding: "clamp(64px,8vw,100px) 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+        <div className="container">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 24, alignItems: "start" }}>
 
-          {/* Input */}
-          <div className="calc-card">
-            <h2 style={{ fontFamily: "var(--ff-ui)", fontWeight: 700, fontSize: "1.2rem", color: "var(--cream)", marginBottom: 28 }}>Your Details</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-                <div className="form-group">
-                  <label className="form-label">Age (years)</label>
-                  <input className="form-input" type="number" placeholder="e.g. 25" value={form.age} onChange={e => setForm(f => ({ ...f, age: e.target.value }))} />
+            {/* ── Input Panel ── */}
+            <div style={{ background: "#09090b", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 20, overflow: "hidden" }}>
+              <div style={{ padding: "24px 28px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.3rem", letterSpacing: "0.06em", color: "#f5f0eb", fontWeight: 400 }}>Your Details</h2>
+                <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.28)", marginTop: 4 }}>All fields required for calculation</p>
+              </div>
+              <div style={{ padding: "28px", display: "flex", flexDirection: "column", gap: 18 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                  <div>
+                    <label style={labelCls}>Age <span style={{ color: "#00C8F0" }}>*</span></label>
+                    <input style={inputCls} type="number" placeholder="e.g. 25" value={form.age} onChange={e => setForm(f => ({ ...f, age: e.target.value }))} />
+                  </div>
+                  <div>
+                    <label style={labelCls}>Gender <span style={{ color: "#00C8F0" }}>*</span></label>
+                    <select style={inputCls} value={form.gender} onChange={e => setForm(f => ({ ...f, gender: e.target.value }))}>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
                 </div>
-                <div className="form-group">
-                  <label className="form-label">Gender</label>
-                  <select className="form-input" value={form.gender} onChange={e => setForm(f => ({ ...f, gender: e.target.value }))}>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                  <div>
+                    <label style={labelCls}>Weight (kg) <span style={{ color: "#00C8F0" }}>*</span></label>
+                    <input style={inputCls} type="number" placeholder="e.g. 72" value={form.weight} onChange={e => setForm(f => ({ ...f, weight: e.target.value }))} />
+                  </div>
+                  <div>
+                    <label style={labelCls}>Height (cm) <span style={{ color: "#00C8F0" }}>*</span></label>
+                    <input style={inputCls} type="number" placeholder="e.g. 175" value={form.height} onChange={e => setForm(f => ({ ...f, height: e.target.value }))} />
+                  </div>
+                </div>
+                <div>
+                  <label style={labelCls}>Activity Level <span style={{ color: "#00C8F0" }}>*</span></label>
+                  <select style={inputCls} value={form.activity} onChange={e => setForm(f => ({ ...f, activity: e.target.value }))}>
+                    {ACTIVITY.map(a => <option key={a.factor} value={a.factor}>{a.label}</option>)}
                   </select>
                 </div>
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-                <div className="form-group">
-                  <label className="form-label">Weight (kg)</label>
-                  <input className="form-input" type="number" placeholder="e.g. 72" value={form.weight} onChange={e => setForm(f => ({ ...f, weight: e.target.value }))} />
+                <div>
+                  <label style={labelCls}>Your Goal <span style={{ color: "#00C8F0" }}>*</span></label>
+                  <select style={inputCls} value={form.goal} onChange={e => setForm(f => ({ ...f, goal: e.target.value }))}>
+                    {GOALS.map(g => <option key={g.adjust} value={g.adjust}>{g.label}</option>)}
+                  </select>
                 </div>
-                <div className="form-group">
-                  <label className="form-label">Height (cm)</label>
-                  <input className="form-input" type="number" placeholder="e.g. 175" value={form.height} onChange={e => setForm(f => ({ ...f, height: e.target.value }))} />
+
+                {/* Formula preview */}
+                <div style={{ padding: "14px 16px", background: "rgba(0,200,240,0.04)", border: "1px solid rgba(0,200,240,0.09)", borderRadius: 10, fontSize: "0.72rem", color: "rgba(255,255,255,0.28)", lineHeight: 1.9, fontFamily: "monospace" }}>
+                  <span style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>Formula Used</span><br />
+                  BMR = (10 × kg) + (6.25 × cm) − (5 × age) {form.gender === "male" ? "+ 5" : "− 161"}<br />
+                  TDEE = BMR × {form.activity}
                 </div>
+
+                <button
+                  onClick={calculate}
+                  style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "0.9rem 1.5rem", borderRadius: 999, background: "#00C8F0", color: "#09090b", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem", border: "none", cursor: "pointer", boxShadow: "0 4px 20px rgba(0,200,240,0.25)", transition: "background 0.2s, transform 0.2s", letterSpacing: "0.02em" }}
+                >
+                  <Flame size={15} />
+                  Calculate My Calories
+                </button>
               </div>
-              <div className="form-group">
-                <label className="form-label">Activity Level</label>
-                <select className="form-input" value={form.activity} onChange={e => setForm(f => ({ ...f, activity: e.target.value }))}>
-                  {ACTIVITY.map(a => (
-                    <option key={a.factor} value={a.factor}>{a.label}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="form-group">
-                <label className="form-label">Your Goal</label>
-                <select className="form-input" value={form.goal} onChange={e => setForm(f => ({ ...f, goal: e.target.value }))}>
-                  {GOALS.map(g => (
-                    <option key={g.adjust} value={g.adjust}>{g.label}</option>
-                  ))}
-                </select>
-              </div>
-              <button onClick={calculate} className="btn btn-primary" style={{ width: "100%", justifyContent: "center", marginTop: 8 }}>
-                Calculate My Calories
-              </button>
             </div>
-          </div>
 
-          {/* Results */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            {result ? (
-              <>
-                <div className="calc-result-card">
-                  <h3 style={{ fontFamily: "var(--ff-ui)", fontWeight: 700, fontSize: "0.78rem", textTransform: "uppercase", letterSpacing: "0.16em", color: "var(--blue)", marginBottom: 24 }}>Your Results</h3>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 28 }}>
-                    <div className="calc-stat">
-                      <div className="calc-stat-value">{result.bmr}</div>
-                      <div className="calc-stat-label">BMR<br/>kcal/day</div>
+            {/* ── Results Panel ── */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              {result ? (
+                <>
+                  {/* Main result card */}
+                  <div style={{ background: "linear-gradient(145deg, rgba(0,200,240,0.07), rgba(9,9,11,0.97))", border: "1px solid rgba(0,200,240,0.14)", borderRadius: 20, padding: "32px 28px" }}>
+                    <div style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.22em", color: "#00C8F0", marginBottom: 24, opacity: 0.8 }}>Your Results</div>
+
+                    {/* Three stat blocks */}
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 2, marginBottom: 24, background: "rgba(255,255,255,0.04)", borderRadius: 14, overflow: "hidden" }}>
+                      {[
+                        { label: "BMR", value: result.bmr, sub: "kcal/day", dim: true },
+                        { label: "TDEE", value: result.tdee, sub: "kcal/day", dim: true },
+                        { label: "Target", value: result.target, sub: "kcal/day", dim: false },
+                      ].map((s, i) => (
+                        <div key={s.label} style={{ padding: "20px 12px", textAlign: "center", background: i === 2 ? "rgba(0,200,240,0.08)" : "rgba(9,9,11,0.6)", borderRight: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+                          <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(1.8rem,3vw,2.4rem)", color: i === 2 ? "#00C8F0" : "#f5f0eb", lineHeight: 1, letterSpacing: "0.03em" }}>{s.value.toLocaleString()}</div>
+                          <div style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.3)", marginTop: 6 }}>{s.label}</div>
+                          <div style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.2)", marginTop: 2 }}>{s.sub}</div>
+                        </div>
+                      ))}
                     </div>
-                    <div className="calc-stat">
-                      <div className="calc-stat-value">{result.tdee}</div>
-                      <div className="calc-stat-label">TDEE<br/>kcal/day</div>
+
+                    {/* Goal chip + explanation */}
+                    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+                      <span style={{ padding: "4px 12px", borderRadius: 999, background: `${getGoalColor()}18`, border: `1px solid ${getGoalColor()}30`, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: getGoalColor() }}>
+                        {getGoalLabel()}
+                      </span>
                     </div>
-                    <div className="calc-stat">
-                      <div className="calc-stat-value calc-stat-blue">{result.target}</div>
-                      <div className="calc-stat-label">Target<br/>kcal/day</div>
+                    <p style={{ fontSize: "0.85rem", lineHeight: 1.75, color: "rgba(255,255,255,0.45)" }}>
+                      Eat approximately <strong style={{ color: "#f5f0eb" }}>{result.target.toLocaleString()} kcal/day</strong> to reach your goal. Reassess every 3–4 weeks as your weight changes.
+                    </p>
+
+                    {/* Progress bar: BMR → TDEE → Target */}
+                    <div style={{ marginTop: 20, padding: "16px", background: "rgba(0,0,0,0.25)", borderRadius: 10 }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.58rem", color: "rgba(255,255,255,0.28)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>
+                        <span>BMR {result.bmr}</span><span>TDEE {result.tdee}</span><span>Target {result.target}</span>
+                      </div>
+                      <div style={{ height: 5, background: "rgba(255,255,255,0.06)", borderRadius: 999, position: "relative", overflow: "hidden" }}>
+                        <div style={{ height: "100%", background: "linear-gradient(90deg, rgba(0,200,240,0.4), #00C8F0)", borderRadius: 999, width: `${Math.min(100, (result.target / (result.tdee * 1.3)) * 100)}%`, transition: "width 0.8s ease" }} />
+                      </div>
                     </div>
                   </div>
-                  <div style={{ padding: "16px", background: "rgba(0,0,0,0.3)", borderRadius: "var(--r-md)", fontSize: "0.84rem", color: "var(--muted)", lineHeight: 1.7 }}>
-                    <strong style={{ color: "var(--cream)" }}>Goal: {getGoalLabel()}</strong><br />
-                    Eat approximately <strong style={{ color: "var(--blue)" }}>{result.target} kcal/day</strong> to reach your goal. Reassess every 3–4 weeks as your weight changes.
-                  </div>
-                </div>
 
-                <div style={{ padding: "20px 24px", background: "rgba(12,13,22,0.75)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "var(--r-xl)" }}>
-                  <p style={{ fontSize: "0.82rem", color: "var(--muted)", lineHeight: 1.8, marginBottom: 14 }}>
-                    <strong style={{ color: "var(--cream)" }}>Suggested Protein:</strong> {Math.round(parseFloat(form.weight) * 1.8)}–{Math.round(parseFloat(form.weight) * 2.2)}g/day<br />
-                    These numbers are a starting point. Real-world results may require adjustments based on your body&apos;s response.
-                  </p>
-                  <Link href="/book" className="btn btn-wa" style={{ width: "100%", justifyContent: "center" }}>
-                    📲 Get a Custom Nutrition Plan
+                  {/* Protein recommendation */}
+                  <div style={{ background: "#09090b", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, padding: "22px 24px" }}>
+                    <div style={{ fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", marginBottom: 10 }}>Suggested Protein Intake</div>
+                    <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.8rem", color: "#f5f0eb", letterSpacing: "0.04em", marginBottom: 6 }}>
+                      {Math.round(parseFloat(form.weight) * 1.8)}–{Math.round(parseFloat(form.weight) * 2.2)}
+                      <span style={{ fontSize: "1rem", color: "rgba(255,255,255,0.3)", marginLeft: 6, fontFamily: "'Inter', sans-serif" }}>g/day</span>
+                    </div>
+                    <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.35)", lineHeight: 1.7 }}>
+                      Based on 1.8–2.2g per kg bodyweight. Prioritise hitting this target daily to preserve and build muscle while in a deficit.
+                    </p>
+                  </div>
+
+                  {/* CTA */}
+                  <Link href="/book" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "0.9rem 1.5rem", borderRadius: 999, background: "#00C8F0", color: "#09090b", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem", textDecoration: "none", boxShadow: "0 4px 20px rgba(0,200,240,0.22)", textAlign: "center" }}>
+                    Get a Custom Nutrition Plan <ArrowRight size={14} />
                   </Link>
+                </>
+              ) : (
+                /* Empty state */
+                <div style={{ background: "#09090b", border: "1px dashed rgba(0,200,240,0.12)", borderRadius: 20, padding: "56px 40px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
+                  <div style={{ width: 56, height: 56, borderRadius: "50%", background: "rgba(0,200,240,0.06)", border: "1px solid rgba(0,200,240,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <Flame size={22} color="#00C8F0" strokeWidth={1.5} />
+                  </div>
+                  <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.3rem", fontWeight: 400, color: "#f5f0eb", letterSpacing: "0.04em" }}>Your Results Appear Here</h3>
+                  <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.28)", lineHeight: 1.7, maxWidth: 280 }}>
+                    Enter your details on the left and hit Calculate to see your personalised calorie targets.
+                  </p>
                 </div>
-              </>
-            ) : (
-              <div style={{ padding: "40px", background: "rgba(12,13,22,0.6)", border: "1px dashed rgba(0,200,240,0.14)", borderRadius: "var(--r-2xl)", textAlign: "center" }}>
-                <div style={{ fontSize: "2.5rem", marginBottom: 14 }}>🧮</div>
-                <p style={{ color: "var(--faint)", fontSize: "0.9rem", lineHeight: 1.7 }}>
-                  Enter your details and hit <strong style={{ color: "var(--cream)" }}>Calculate</strong> to see your personalised calorie targets.
-                </p>
-              </div>
-            )}
+              )}
 
-            {/* How it works */}
-            <div style={{ padding: "24px", background: "rgba(12,13,22,0.75)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "var(--r-xl)" }}>
-              <h3 style={{ fontFamily: "var(--ff-ui)", fontWeight: 700, fontSize: "0.9rem", color: "var(--cream)", marginBottom: 14 }}>How This Calculator Works</h3>
-              <p style={{ fontSize: "0.84rem", color: "var(--muted)", lineHeight: 1.8, marginBottom: 10 }}>Uses the <strong style={{ color: "var(--cream)" }}>Mifflin-St Jeor equation</strong> — validated across multiple studies as the most accurate BMR formula for the general population.</p>
-              <div style={{ fontSize: "0.78rem", color: "var(--faint)", background: "rgba(0,0,0,0.3)", borderRadius: "var(--r-md)", padding: "14px 16px", lineHeight: 2 }}>
-                <strong style={{ color: "var(--limestone)" }}>Male:</strong> BMR = (10 × kg) + (6.25 × cm) − (5 × age) + 5<br />
-                <strong style={{ color: "var(--limestone)" }}>Female:</strong> BMR = (10 × kg) + (6.25 × cm) − (5 × age) − 161<br />
-                <strong style={{ color: "var(--limestone)" }}>TDEE:</strong> BMR × Activity Factor
+              {/* How it works card */}
+              <div style={{ background: "#09090b", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 16, padding: "22px 24px" }}>
+                <div style={{ fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", marginBottom: 12 }}>How This Works</div>
+                <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.8 }}>
+                  Uses the <strong style={{ color: "#f5f0eb" }}>Mifflin-St Jeor equation</strong> — validated across multiple studies as the most accurate BMR formula for the general population and endorsed by the Academy of Nutrition and Dietetics.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Indian Tips */}
-      <section className="section section-alt">
+      {/* ── INDIAN TIPS ── */}
+      <section style={{ background: "#09090b", padding: "clamp(64px,8vw,100px) 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="container">
-          <div style={{ textAlign: "center", marginBottom: 48, display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
-            <span className="eyebrow">For Indian Diets</span>
-            <h2 className="d-xl">Things to Keep in <span className="text-blue">Mind</span></h2>
+          <div style={{ textAlign: "center", marginBottom: 56, display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
+            <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "0.68rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "#00C8F0" }}>For Indian Diets</span>
+            <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2rem,4vw,3.2rem)", fontWeight: 400, letterSpacing: "0.02em", color: "#f5f0eb" }}>
+              Things to Keep in <span style={{ color: "#00C8F0" }}>Mind</span>
+            </h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
-            {INDIAN_TIPS.map(t => (
-              <div key={t.title} className="glass" style={{ padding: "24px" }}>
-                <span style={{ fontSize: "1.6rem", display: "block", marginBottom: 12 }}>{t.emoji}</span>
-                <h3 style={{ fontFamily: "var(--ff-ui)", fontWeight: 600, fontSize: "0.95rem", color: "var(--cream)", marginBottom: 10 }}>{t.title}</h3>
-                <p style={{ fontSize: "0.84rem", color: "var(--muted)", lineHeight: 1.78 }}>{t.tip}</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
+            {INDIAN_TIPS.map((t, i) => (
+              <div key={t.title} style={{ background: "#0c0c10", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 16, padding: "28px 24px", display: "flex", flexDirection: "column", gap: 12, transition: "border-color 0.3s", position: "relative", overflow: "hidden" }}>
+                <div style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(0,200,240,0.08)", border: "1px solid rgba(0,200,240,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "0.9rem", color: "#00C8F0" }}>{String(i + 1).padStart(2, "0")}</span>
+                </div>
+                <h3 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.9rem", color: "#f5f0eb", lineHeight: 1.3 }}>{t.title}</h3>
+                <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.78 }}>{t.tip}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="section">
+      {/* ── FAQ ── */}
+      <section style={{ background: "#0c0c10", padding: "clamp(64px,8vw,100px) 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="container" style={{ maxWidth: 760, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48, display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
-            <span className="eyebrow">FAQ</span>
-            <h2 className="d-xl">Frequently <span className="text-blue">Asked</span></h2>
+          <div style={{ textAlign: "center", marginBottom: 52, display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
+            <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "0.68rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "#00C8F0" }}>FAQ</span>
+            <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2rem,4vw,3.2rem)", fontWeight: 400, letterSpacing: "0.02em", color: "#f5f0eb" }}>
+              Frequently <span style={{ color: "#00C8F0" }}>Asked</span>
+            </h2>
           </div>
-          {FAQ.map((f, i) => (
-            <div key={i} className="accord">
-              <button className="accord-btn" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                {f.q}
-                {openFaq === i ? <ChevronUp size={16} style={{ color: "var(--blue)", flexShrink: 0 }} /> : <ChevronDown size={16} style={{ color: "var(--faint)", flexShrink: 0 }} />}
-              </button>
-              {openFaq === i && <div className="accord-body">{f.a}</div>}
-            </div>
-          ))}
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {FAQ.map((f, i) => (
+              <div key={i} style={{ background: "#09090b", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 14, overflow: "hidden" }}>
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, padding: "20px 24px", textAlign: "left", cursor: "pointer", background: "none", border: "none", fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", fontWeight: 600, color: "#f5f0eb" }}
+                >
+                  {f.q}
+                  {openFaq === i
+                    ? <ChevronUp size={15} color="#00C8F0" style={{ flexShrink: 0 }} />
+                    : <ChevronDown size={15} color="rgba(255,255,255,0.28)" style={{ flexShrink: 0 }} />
+                  }
+                </button>
+                {openFaq === i && (
+                  <div style={{ padding: "0 24px 20px", fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.85 }}>
+                    {f.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Disclaimer + CTA */}
-      <section className="section section-alt">
+      {/* ── DISCLAIMER + CTA ── */}
+      <section style={{ background: "#09090b", padding: "clamp(64px,8vw,100px) 0" }}>
         <div className="container" style={{ maxWidth: 720, margin: "0 auto" }}>
-          <div style={{ padding: "20px 24px", background: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.14)", borderRadius: "var(--r-lg)", marginBottom: 40, fontSize: "0.82rem", color: "var(--muted)", lineHeight: 1.8 }}>
-            <strong style={{ color: "#fca5a5" }}>Disclaimer:</strong> This calculator provides estimates based on the Mifflin-St Jeor equation. It is for informational purposes only and is not medical or dietary advice. Individual needs vary based on metabolism, health conditions, and medications. Always consult a qualified healthcare professional before making significant dietary changes — especially if you have diabetes, thyroid conditions, PCOS, or any other health condition.
+          <div style={{ padding: "16px 20px", background: "rgba(239,68,68,0.04)", border: "1px solid rgba(239,68,68,0.12)", borderRadius: 12, marginBottom: 48, fontSize: "0.8rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.8 }}>
+            <strong style={{ color: "#fca5a5" }}>Disclaimer:</strong> This calculator provides estimates based on the Mifflin-St Jeor equation. It is for informational purposes only and is not medical or dietary advice. Individual needs vary. Always consult a qualified healthcare professional before making significant dietary changes.
           </div>
-          <div style={{ textAlign: "center" }}>
-            <h2 className="d-xl" style={{ marginBottom: 14, fontSize: "clamp(1.6rem,3vw,2.4rem)" }}>Numbers Are the <span className="text-blue">Starting Point</span></h2>
-            <p style={{ color: "var(--muted)", marginBottom: 28, lineHeight: 1.75 }}>A calculator tells you what to aim for. A coach helps you actually get there — with a plan, accountability, and weekly adjustments.</p>
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/book" className="btn btn-wa btn-lg">📲 Get a Custom Plan from Abhinav</Link>
-              <Link href="/tools/macro-calculator" className="btn btn-outline btn-lg">Macro Calculator <ArrowRight size={15} /></Link>
+          <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
+            <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2rem,4vw,3.5rem)", fontWeight: 400, letterSpacing: "0.02em", color: "#f5f0eb" }}>
+              Numbers Are the <span style={{ color: "#00C8F0" }}>Starting Point</span>
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.38)", lineHeight: 1.75, maxWidth: 440, fontSize: "0.9rem" }}>
+              A calculator tells you what to aim for. A coach helps you actually get there — with a plan, accountability, and weekly adjustments.
+            </p>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
+              <Link href="/book" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "0.9rem 2rem", borderRadius: 999, background: "#00C8F0", color: "#09090b", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem", textDecoration: "none", boxShadow: "0 4px 20px rgba(0,200,240,0.25)" }}>
+                Get a Custom Plan <ArrowRight size={14} />
+              </Link>
+              <Link href="/tools/macro-calculator" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "0.9rem 2rem", borderRadius: 999, border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.55)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.875rem", textDecoration: "none" }}>
+                Macro Calculator <ArrowRight size={14} />
+              </Link>
             </div>
           </div>
         </div>

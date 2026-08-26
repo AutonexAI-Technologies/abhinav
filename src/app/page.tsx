@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero/Hero";
 import ServicesTicker from "@/components/ServicesTicker/ServicesTicker";
-import HomeTrustStrip from "@/components/home/HomeTrustStrip";
 import HomeAbout from "@/components/home/HomeAbout";
 import HomeServices from "@/components/home/HomeServices";
+import HomeProcess from "@/components/home/HomeProcess";
 import HomeTransformations from "@/components/home/HomeTransformations";
 import HomePricing from "@/components/home/HomePricing";
 import HomeCTA from "@/components/home/HomeCTA";
@@ -19,9 +19,9 @@ export default function HomePage() {
     <>
       <Hero />
       <ServicesTicker />
-      <HomeTrustStrip />
       <HomeAbout />
       <HomeServices />
+      <HomeProcess />
       <HomeTransformations />
       <HomePricing />
       <HomeCTA />

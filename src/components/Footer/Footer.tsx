@@ -1,101 +1,299 @@
 import Link from "next/link";
+import { Mail, MessageCircle, ArrowRight } from "lucide-react";
 
-const NAV_LINKS = [
-  {label:"About",           href:"/about"},
-  {label:"Services",        href:"/services"},
-  {label:"Diet Plans",      href:"/diet-plans"},
-  {label:"Transformations", href:"/transformations"},
-  {label:"Blog",            href:"/blog"},
-  {label:"Pricing",         href:"/pricing"},
-  {label:"Book a Call",     href:"/book"},
-];
-const LEGAL = [
-  {label:"Privacy Policy",     href:"/privacy"},
-  {label:"Terms & Conditions", href:"/terms"},
-];
-const SERVICES = ["Resistance Training","Personal Training","Meal & Workout Plans","Cardio Exercises","Online Coaching","Custom Diet Plans"];
-
-const linkStyle = {fontSize:"0.875rem",color:"var(--muted)",transition:"color .2s"} as const;
+const LINKS = {
+  Training: [
+    { label: "Resistance Training", href: "/services" },
+    { label: "Personal Training", href: "/services" },
+    { label: "Hybrid Programming", href: "/services" },
+    { label: "Cardio & Running", href: "/services" },
+    { label: "Online Coaching", href: "/services" },
+  ],
+  Nutrition: [
+    { label: "Custom Diet Plans", href: "/diet-plans" },
+    { label: "Meal & Workout Plans", href: "/diet-plans" },
+    { label: "Macro Calculator", href: "/tools/macro-calculator" },
+    { label: "Calorie Calculator", href: "/tools/calorie-calculator" },
+    { label: "1RM Calculator", href: "/tools/one-rep-max" },
+  ],
+  Company: [
+    { label: "About Abhinav", href: "/about" },
+    { label: "Transformations", href: "/transformations" },
+    { label: "Blog", href: "/blog" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Book a Call", href: "/book" },
+  ],
+};
 
 export default function Footer() {
   return (
-    <footer style={{background:"rgba(7,8,15,0.97)",borderTop:"1px solid rgba(0,200,240,0.07)",padding:"72px 0 0"}}>
-      <div className="container">
-        <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:48,paddingBottom:56,borderBottom:"1px solid rgba(0,200,240,0.05)"}}>
-
-          {/* Brand */}
-          <div style={{display:"flex",flexDirection:"column",gap:18}}>
-            <div style={{display:"flex",alignItems:"center",gap:10}}>
-              <div style={{width:36,height:36,borderRadius:9,background:"linear-gradient(135deg,#00C8F0,#005f77)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--ff-display)",fontSize:"1.2rem",color:"#07080f"}}>A</div>
-              <span style={{fontFamily:"var(--ff-ui)",fontWeight:700,fontSize:"0.9rem",letterSpacing:"0.08em",textTransform:"uppercase",color:"var(--cream)"}}>
-                ABHINAV <span style={{color:"var(--blue)"}}>LIFTS</span>
-              </span>
-            </div>
-            <p style={{fontSize:"0.875rem",color:"var(--muted)",lineHeight:1.8,maxWidth:300}}>
-              Online fitness coaching, hybrid athlete, long-distance runner, and content creator. Building stronger bodies and more disciplined minds.
+    <footer
+      style={{
+        background: "#07080f",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+      }}
+    >
+      {/* Top CTA strip */}
+      <div
+        style={{
+          background: "linear-gradient(135deg, rgba(0,200,240,0.08) 0%, rgba(0,150,180,0.04) 100%)",
+          borderBottom: "1px solid rgba(0,200,240,0.08)",
+          padding: "40px 0",
+        }}
+      >
+        <div
+          className="container"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 24,
+            flexWrap: "wrap",
+          }}
+        >
+          <div>
+            <h3
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
+                fontWeight: 400,
+                color: "#f5f0eb",
+                letterSpacing: "0.04em",
+                marginBottom: 6,
+              }}
+            >
+              Ready to Transform?
+            </h3>
+            <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.6 }}>
+              Fill the intake form — reviewed personally by Abhinav within 24 hours.
             </p>
-            <div style={{display:"flex",gap:10}}>
-              <a href="https://www.instagram.com/abhinav._lifts/" target="_blank" rel="noopener noreferrer"
-                style={{padding:"7px 16px",borderRadius:"9999px",fontSize:"0.75rem",fontWeight:600,color:"var(--muted)",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.07)"}}>
-                📸 @abhinav._lifts
+          </div>
+          <Link
+            href="/book"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "0.9rem 2rem",
+              borderRadius: 999,
+              background: "#00C8F0",
+              color: "#09090b",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 700,
+              fontSize: "0.875rem",
+              letterSpacing: "0.02em",
+              textDecoration: "none",
+              flexShrink: 0,
+              boxShadow: "0 4px 24px rgba(0,200,240,0.28)",
+              transition: "background 0.2s, transform 0.2s",
+            }}
+          >
+            Start Your Journey <ArrowRight size={15} />
+          </Link>
+        </div>
+      </div>
+
+      {/* Main footer grid */}
+      <div className="container" style={{ padding: "72px 0 0" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1.8fr 1fr 1fr 1fr",
+            gap: 48,
+            paddingBottom: 64,
+            borderBottom: "1px solid rgba(255,255,255,0.05)",
+          }}
+        >
+          {/* Brand column */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            {/* Logo */}
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div
+                style={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: 10,
+                  background: "linear-gradient(135deg,#00C8F0,#005f77)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: "1.3rem",
+                  color: "#07080f",
+                  flexShrink: 0,
+                }}
+              >
+                A
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: "1.1rem",
+                    letterSpacing: "0.12em",
+                    color: "#f5f0eb",
+                  }}
+                >
+                  ABHINAV <span style={{ color: "#00C8F0" }}>LIFTS</span>
+                </div>
+                <div
+                  style={{
+                    fontSize: "0.62rem",
+                    color: "rgba(255,255,255,0.28)",
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    marginTop: 1,
+                  }}
+                >
+                  Online Fitness Coach
+                </div>
+              </div>
+            </div>
+
+            <p
+              style={{
+                fontSize: "0.875rem",
+                color: "rgba(255,255,255,0.38)",
+                lineHeight: 1.85,
+                maxWidth: 280,
+              }}
+            >
+              Helping people build stronger bodies, disciplined minds, and meaningful lives.
+              Sharing the journey through fitness, running & entrepreneurship.
+            </p>
+
+            {/* Social links */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <a
+                href="https://www.instagram.com/abhinav_.lifts/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 10,
+                  fontSize: "0.82rem",
+                  color: "rgba(255,255,255,0.45)",
+                  textDecoration: "none",
+                  transition: "color 0.2s",
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                @abhinav_.lifts
+              </a>
+              <a
+                href="mailto:abhinavlifts05@gmail.com"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 10,
+                  fontSize: "0.82rem",
+                  color: "rgba(255,255,255,0.45)",
+                  textDecoration: "none",
+                }}
+              >
+                <Mail size={14} strokeWidth={1.5} />
+                abhinavlifts05@gmail.com
+              </a>
+              <a
+                href="https://wa.me/918096407555"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 10,
+                  fontSize: "0.82rem",
+                  color: "rgba(255,255,255,0.45)",
+                  textDecoration: "none",
+                }}
+              >
+                <MessageCircle size={14} strokeWidth={1.5} />
+                WhatsApp (Mon–Sat)
               </a>
             </div>
-            <div style={{padding:"14px 18px",background:"rgba(0,200,240,0.04)",border:"1px solid rgba(0,200,240,0.09)",borderRadius:"12px"}}>
-              <p style={{fontSize:"0.78rem",color:"var(--faint)",fontStyle:"italic",lineHeight:1.7}}>
-                &ldquo;Discipline is doing what needs to be done, even when you don&apos;t feel like doing it.&rdquo;
-              </p>
-            </div>
+
+            {/* Location */}
+            <p
+              style={{
+                fontSize: "0.72rem",
+                color: "rgba(255,255,255,0.22)",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+              }}
+            >
+              Hyderabad, Telangana · India
+            </p>
           </div>
 
-          {/* Pages */}
-          <div>
-            <h3 style={{fontSize:"0.62rem",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.2em",color:"var(--faint)",marginBottom:20}}>Pages</h3>
-            <nav style={{display:"flex",flexDirection:"column",gap:10}}>
-              {NAV_LINKS.map(l=><Link key={l.href} href={l.href} style={linkStyle}>{l.label}</Link>)}
-            </nav>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 style={{fontSize:"0.62rem",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.2em",color:"var(--faint)",marginBottom:20}}>Services</h3>
-            <div style={{display:"flex",flexDirection:"column",gap:10}}>
-              {SERVICES.map(s=><Link key={s} href="/services" style={linkStyle}>{s}</Link>)}
+          {/* Link columns */}
+          {Object.entries(LINKS).map(([section, items]) => (
+            <div key={section}>
+              <h4
+                style={{
+                  fontSize: "0.6rem",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.22em",
+                  color: "rgba(255,255,255,0.22)",
+                  marginBottom: 20,
+                }}
+              >
+                {section}
+              </h4>
+              <nav style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+                {items.map((l) => (
+                  <Link
+                    key={l.href + l.label}
+                    href={l.href}
+                    style={{
+                      fontSize: "0.85rem",
+                      color: "rgba(255,255,255,0.42)",
+                      textDecoration: "none",
+                      transition: "color 0.2s",
+                    }}
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+              </nav>
             </div>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 style={{fontSize:"0.62rem",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.2em",color:"var(--faint)",marginBottom:20}}>Contact</h3>
-            <div style={{display:"flex",flexDirection:"column",gap:12}}>
-              <a href="https://wa.me/918096407555" target="_blank" rel="noopener noreferrer" style={{display:"flex",alignItems:"center",gap:8,fontSize:"0.875rem",color:"var(--muted)"}}>
-                <span>💬</span> WhatsApp
-              </a>
-              <a href="mailto:abhinavlifts@gmail.com" style={{display:"flex",alignItems:"center",gap:8,fontSize:"0.875rem",color:"var(--muted)"}}>
-                <span>✉️</span> Email Us
-              </a>
-              <p style={{fontSize:"0.78rem",color:"var(--faint)",lineHeight:1.75,marginTop:4}}>
-                Hyderabad, Telangana<br/>India
-              </p>
-              <Link href="/book" className="btn btn-primary btn-sm" style={{marginTop:8,width:"fit-content"}}>
-                Book a Call
-              </Link>
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* Bottom */}
-        <div style={{padding:"24px 0",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:12}}>
-          <p style={{fontSize:"0.78rem",color:"var(--faint)"}}>
-            © {new Date().getFullYear()} Abhinav Lifts. All rights reserved. Hyderabad, Telangana, India.
+        {/* Bottom bar */}
+        <div
+          style={{
+            padding: "28px 0 40px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 14,
+          }}
+        >
+          <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.28)" }}>
+            © {new Date().getFullYear()} Abhinav Lifts. All rights reserved.
           </p>
-          <div style={{display:"flex",gap:24,alignItems:"center",flexWrap:"wrap"}}>
-            <Link href="/tools" style={{fontSize:"0.78rem",color:"var(--faint)"}}>Free Tools</Link>
-            {LEGAL.map(l=><Link key={l.href} href={l.href} style={{fontSize:"0.78rem",color:"var(--faint)"}}>{l.label}</Link>)}
+          <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+            {[{ href:"/privacy", label:"Privacy Policy" },{ href:"/terms", label:"Terms & Conditions" },{ href:"/tools", label:"Free Tools" }].map(l => (
+              <Link key={l.href} href={l.href} style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.28)", textDecoration: "none" }}>
+                {l.label}
+              </Link>
+            ))}
           </div>
-          <p style={{fontSize:"0.72rem",color:"var(--faint)"}}>
-            Designed &amp; Developed by{" "}
-            <a href="https://www.autonexai.org/" target="_blank" rel="noopener noreferrer"
-              style={{color:"var(--blue)",fontWeight:600,textDecoration:"none"}}>
+          <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.22)" }}>
+            Designed & Developed by{" "}
+            <a
+              href="https://www.autonexai.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#00C8F0", fontWeight: 700, textDecoration: "none", fontSize:"0.85rem" }}
+            >
               Autonex AI
             </a>
           </p>

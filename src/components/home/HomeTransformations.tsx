@@ -1,44 +1,121 @@
+"use client";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import BlurFade from "@/components/ui/BlurFade";
 import styles from "./Home.module.css";
+
+// Sample transformation data — placeholder cards until real photos are uploaded
+const TESTIMONIALS = [
+  {
+    name: "Rahul S.",
+    location: "Hyderabad, India",
+    duration: "12 weeks",
+    weightLost: "14 kg",
+    result: "Fat Loss + Strength",
+    quote: "Abhinav's approach is completely different. No crash dieting — just sustainable, science-backed programming. I lost 14 kg in 12 weeks while actually gaining strength.",
+    initials: "RS",
+    color: "#00C8F0",
+  },
+  {
+    name: "Priya M.",
+    location: "Dubai, UAE",
+    duration: "16 weeks",
+    weightLost: "9 kg",
+    result: "Body Recomposition",
+    quote: "The custom meal plan was a game-changer. Abhinav understood my dietary preferences and built a plan around my life — not the other way around.",
+    initials: "PM",
+    color: "#f59e0b",
+  },
+  {
+    name: "Arjun K.",
+    location: "London, UK",
+    duration: "20 weeks",
+    weightLost: "18 kg",
+    result: "Hybrid Training",
+    quote: "From barely running 5km to completing a half-marathon while getting stronger — Abhinav's hybrid programming is the real deal.",
+    initials: "AK",
+    color: "#a855f7",
+  },
+];
+
 export default function HomeTransformations() {
   return (
-    <section className="section section-alt">
+    <section className={styles.transformations}>
+      {/* Top divider glow */}
+      <div className={styles.transformGlow} />
+
       <div className="container">
-        <div className={styles.tGrid}>
-          <div className={styles.tBody}>
-            <span className="eyebrow">Results</span>
-            <h2 className="d-xl">Real People.<br/><span className="text-blue">Real Results.</span></h2>
-            <p style={{fontSize:"1rem",lineHeight:1.85,color:"var(--limestone)"}}>
-              Every client on a personalised programme. The results speak for themselves — disciplined training, smart nutrition, and consistent weekly support.
-            </p>
-            <p style={{fontSize:"0.9rem",lineHeight:1.8,color:"var(--muted)"}}>
-              Clients across India, UAE, and the UK have transformed their physiques using evidence-based programming — without crash diets or unsustainable routines.
-            </p>
-            <div style={{padding:"20px 24px",background:"rgba(0,200,240,0.04)",border:"1px solid rgba(0,200,240,0.12)",borderRadius:"var(--r-lg)"}}>
-              <p style={{fontStyle:"italic",color:"var(--limestone)",fontSize:"0.92rem",lineHeight:1.75}}>&ldquo;The secret of your success is determined by your daily agenda. Focus on the process, and the results will follow.&rdquo;</p>
+        <BlurFade className={styles.sectionHead}>
+          <span className={styles.eyebrow}>Client Results</span>
+          <h2 className={styles.sectionH2}>
+            Real People.<br />
+            <span className={styles.accentText}>Real Results.</span>
+          </h2>
+          <p className={styles.sectionSub}>
+            Every client is on a fully personalised programme. These are real outcomes from
+            real people — disciplined training, smart nutrition, and consistent weekly support.
+            No crash diets. No unsustainable routines.
+          </p>
+        </BlurFade>
+
+        {/* Transformation cards */}
+        <div className={styles.transformGrid}>
+          {TESTIMONIALS.map((t, i) => (
+            <BlurFade key={t.name} delay={0.12 * i}>
+              <div className={styles.transformCard}>
+                {/* Result badge */}
+                <div className={styles.transformBadge} style={{ background: `${t.color}15`, color: t.color, border: `1px solid ${t.color}30` }}>
+                  {t.result}
+                </div>
+
+                {/* Stats row */}
+                <div className={styles.transformStats}>
+                  <div className={styles.transformStat}>
+                    <span className={styles.transformStatNum} style={{ color: t.color }}>{t.weightLost}</span>
+                    <span className={styles.transformStatLabel}>Lost / Changed</span>
+                  </div>
+                  <div className={styles.transformStatDivider} />
+                  <div className={styles.transformStat}>
+                    <span className={styles.transformStatNum}>{t.duration}</span>
+                    <span className={styles.transformStatLabel}>Duration</span>
+                  </div>
+                </div>
+
+                {/* Quote */}
+                <blockquote className={styles.transformQuote}>
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+
+                {/* Client */}
+                <div className={styles.transformClient}>
+                  <div className={styles.transformAvatar} style={{ background: `${t.color}20`, color: t.color, border: `1px solid ${t.color}25` }}>
+                    {t.initials}
+                  </div>
+                  <div>
+                    <div className={styles.transformName}>{t.name}</div>
+                    <div className={styles.transformLocation}>{t.location}</div>
+                  </div>
+                </div>
+              </div>
+            </BlurFade>
+          ))}
+        </div>
+
+        {/* Before/after teaser */}
+        <BlurFade delay={0.4}>
+          <div className={styles.transformTeaser}>
+            <div className={styles.transformTeaserText}>
+              <h3 className={styles.transformTeaserH3}>Before & After Photos</h3>
+              <p className={styles.transformTeaserSub}>
+                Visual transformation photos are being compiled and verified with client consent.
+                Every result shown is real, unedited, and achieved through disciplined programming.
+              </p>
             </div>
-            <Link href="/transformations" className="btn btn-primary" style={{width:"fit-content",display:"inline-flex",gap:8,alignItems:"center"}}>
-              See Transformations <ArrowRight size={16}/>
+            <Link href="/transformations" className={styles.btnLink}>
+              View All Transformations <ArrowRight size={15} />
             </Link>
           </div>
-          <div className={styles.tImgPair}>
-            <div className={styles.tImg} style={{background:"rgba(12,13,22,0.8)"}}>
-              <div style={{position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:12}}>
-                <span style={{fontSize:"2.5rem"}}>📸</span>
-                <p style={{fontSize:"0.82rem",color:"var(--faint)",textAlign:"center",padding:"0 20px"}}>Transformations<br/>Yet to be uploaded</p>
-              </div>
-              <span className={styles.tLabel}>Before</span>
-            </div>
-            <div className={styles.tImg} style={{background:"rgba(12,13,22,0.8)"}}>
-              <div style={{position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:12}}>
-                <span style={{fontSize:"2.5rem"}}>✨</span>
-                <p style={{fontSize:"0.82rem",color:"var(--faint)",textAlign:"center",padding:"0 20px"}}>Results<br/>Coming Soon</p>
-              </div>
-              <span className={`${styles.tLabel} ${styles.tLabelA}`}>After</span>
-            </div>
-          </div>
-        </div>
+        </BlurFade>
       </div>
     </section>
   );

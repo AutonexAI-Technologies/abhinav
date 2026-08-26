@@ -24,7 +24,7 @@ const TOOLS = [
     desc: "Calculate your exact daily macro targets based on your goal and diet preference. Includes an Indian food protein source table for vegetarian, eggetarian, non-veg, and vegan diets.",
     features: ["Goal-specific macro splits", "Indian food protein reference", "Veg / Non-veg / Vegan tables", "Priority protein guidance"],
     href: "/tools/macro-calculator",
-    accent: "#4ade80",
+    accent: "#00C8F0",
   },
   {
     emoji: "💪",
@@ -80,14 +80,13 @@ export default function ToolsPage() {
                 </div>
               )}
               <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-                <span style={{ fontSize: "3rem" }}>{tool.emoji}</span>
                 <div>
                   <h2 style={{ fontFamily: "var(--ff-display)", fontSize: "2rem", color: "var(--cream)", lineHeight: 1.15, marginBottom: 6 }}>{tool.title}</h2>
                   <p style={{ fontSize: "0.85rem", color: tool.accent, fontWeight: 600, letterSpacing: "0.04em" }}>{tool.subtitle}</p>
                 </div>
                 <p style={{ fontSize: "0.95rem", color: "var(--muted)", lineHeight: 1.85 }}>{tool.desc}</p>
-                <Link href={tool.href} className="btn btn-primary" style={{ width: "fit-content", display: "inline-flex", gap: 8, alignItems: "center", borderColor: tool.accent, background: `linear-gradient(135deg, ${tool.accent}, ${tool.accent}bb)` }}>
-                  Open Calculator <ArrowRight size={16} />
+                <Link href={tool.href} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "0.75rem 1.75rem", borderRadius: 999, background: "#00C8F0", color: "#09090b", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem", textDecoration: "none", boxShadow: "0 4px 20px rgba(0,200,240,0.22)" }}>
+                  Open Calculator <ArrowRight size={15} />
                 </Link>
               </div>
               {i % 2 === 0 && (
@@ -115,8 +114,8 @@ export default function ToolsPage() {
           <p style={{ fontSize: "1rem", color: "var(--muted)", lineHeight: 1.85, marginBottom: 36 }}>
             Most people train and diet by feel. The ones who get results train and eat by data. These calculators give you the foundation — from there, a personalised programme makes the difference.
           </p>
-          <Link href="/book" className="btn btn-wa btn-lg">
-            📲 Get a Full Custom Programme from Abhinav
+          <Link href="/book" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "0.9rem 2.2rem", borderRadius: 999, background: "#00C8F0", color: "#09090b", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.9rem", textDecoration: "none", boxShadow: "0 4px 24px rgba(0,200,240,0.28)" }}>
+            Get a Custom Programme <ArrowRight size={15} />
           </Link>
         </div>
       </section>
