@@ -31,7 +31,7 @@ const PLANS = [
   {
     name: "3-Month Transform",
     price: "₹9,999",
-    per: "3 months",
+    per: "/ 3 months",
     desc: "Complete body transformation with maximum support and accountability.",
     feats: ["Everything in Coaching", "3-month roadmap", "Monthly video calls", "Mindset coaching", "Priority WhatsApp"],
     featured: false,

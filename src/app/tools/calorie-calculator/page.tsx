@@ -128,7 +128,7 @@ export default function CalorieCalculatorPage() {
       {/* ── CALCULATOR ── */}
       <section style={{ background: "#0c0c10", padding: "clamp(64px,8vw,100px) 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="container">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 24, alignItems: "start" }}>
+          <div className="calc-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 24, alignItems: "start" }}>
 
             {/* ── Input Panel ── */}
             <div style={{ background: "#09090b", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 20, overflow: "hidden" }}>
@@ -285,7 +285,7 @@ export default function CalorieCalculatorPage() {
               Things to Keep in <span style={{ color: "#00C8F0" }}>Mind</span>
             </h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
+          <div className="calc-tips-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
             {INDIAN_TIPS.map((t, i) => (
               <div key={t.title} style={{ background: "#0c0c10", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 16, padding: "28px 24px", display: "flex", flexDirection: "column", gap: 12, transition: "border-color 0.3s", position: "relative", overflow: "hidden" }}>
                 <div style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(0,200,240,0.08)", border: "1px solid rgba(0,200,240,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>

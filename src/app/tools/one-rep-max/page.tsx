@@ -113,7 +113,7 @@ export default function OneRepMaxPage() {
       {/* ── CALCULATOR ── */}
       <section style={{ background: "#0c0c10", padding: "clamp(64px,8vw,100px) 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="container">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 24, alignItems: "start" }}>
+          <div className="calc-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 24, alignItems: "start" }}>
 
             {/* Input Panel */}
             <div style={{ background: "#09090b", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 20, overflow: "hidden" }}>

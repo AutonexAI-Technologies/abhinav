@@ -337,7 +337,7 @@ input, textarea, select { font: inherit; }
 }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE — BASE
    ============================================================ */
 @media (max-width: 1280px) { .container { max-width: 1100px; } }
 @media (max-width: 1024px) { :root { --sec-py: 80px; } .container { padding-inline: 24px; } }
@@ -345,3 +345,144 @@ input, textarea, select { font: inherit; }
 @media (max-width: 480px)  { :root { --sec-py: 44px; } .container { padding-inline: 14px; } }
 @media (max-width: 375px)  { .container { padding-inline: 12px; } }
 @media (min-width: 1920px) { :root { --sec-py: 140px; } .container { max-width: 1600px; } }
+
+/* ============================================================
+   RESPONSIVE — CALCULATOR PAGES (calorie / macro / 1rm)
+   ============================================================ */
+
+/* The 2-column [input | results] layout collapses to 1-col on tablet */
+@media (max-width: 900px) {
+  /* Target the calculator grid layouts which use inline style grid */
+  /* We override via a utility class applied in each calculator */
+  .calc-two-col {
+    grid-template-columns: 1fr !important;
+  }
+  .calc-tips-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .calc-stat-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Calc page hero */
+  .calc-tips-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .calc-stat-row {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* Table overflow scroll on mobile */
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  thead, tbody, tr { min-width: 500px; }
+  /* Calc result stat grids — allow scroll */
+  .calc-result-card { overflow-x: auto; }
+}
+
+/* ============================================================
+   RESPONSIVE — BOOK / FORM PAGES
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Any 2-col form grids should stack */
+  form .form-row-2col {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — INNER PAGE HEROES & SECTIONS
+   ============================================================ */
+@media (max-width: 768px) {
+  /* All inner page section paddings */
+  section[style*="clamp"] {
+    overflow-x: hidden;
+  }
+  /* Ensure no horizontal overflow */
+  body { overflow-x: hidden; }
+
+  /* Pricing cards on inner /pricing page — stack */
+  .pricing-page-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Services grid on /services page */
+  .services-page-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* About page two-col grids */
+  .about-page-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Transformations page grids */
+  .transforms-page-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tools page card grid */
+  .tools-page-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Blog page grid */
+  .blog-page-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Diet plans page grid */
+  .diet-page-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Make all Bebas Neue headings scale properly */
+  h1 { font-size: clamp(2rem, 9vw, 3rem) !important; line-height: 1.05 !important; }
+  h2 { font-size: clamp(1.6rem, 7vw, 2.5rem) !important; }
+
+  /* Stat grids — 2 per row max */
+  .stat-grid-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Ensure all buttons are full width on small mobile */
+  .mobile-full-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* ============================================================
+   CROSS-BROWSER FIXES
+   ============================================================ */
+/* Fix select appearance across browsers */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+/* Fix smooth scroll on Safari iOS */
+html {
+  -webkit-overflow-scrolling: touch;
+}
+/* Prevent iOS text size adjustment on rotation */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+/* Ensure inputs don't zoom on iOS (font-size >= 16px) */
+@media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+/* Fix backdrop-filter on Safari */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-card {
+    background: rgba(12, 13, 22, 0.95) !important;
+  }
+}
+

@@ -469,6 +469,8 @@
 .pricingFeatured {
   border-color: rgba(0,200,240,0.20) !important;
   background: linear-gradient(145deg, rgba(0,200,240,0.05), rgba(9,9,11,0.98)) !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .pricingBadge {
@@ -506,15 +508,17 @@
 
 .pricingPrice {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-size: 2.8rem;
   color: #f5f0eb;
   line-height: 1;
   letter-spacing: 0.02em;
 }
 
 .pricingPer {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: rgba(255,255,255,0.35);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
 }
 
 .pricingDesc {

@@ -137,7 +137,7 @@
 .progressBar {
   height: 100%;
   border-radius: 99px;
-  background: #22c55e;
+  background: #00C8F0;
   transition: width 1.5s ease 1.5s;
 }
 
@@ -403,14 +403,16 @@
 @media (max-width: 640px) {
   .ctaRow { flex-direction: column; align-items: stretch; }
   .btnPrimary, .btnDark { width: 100%; justify-content: center; }
-  .h1Line1, .h1Line2 { font-size: 3rem; }
+  .h1Line1, .h1Line2 { font-size: clamp(2.6rem, 9vw, 3.4rem); }
   .stats { gap: 16px; }
   .statDivider { height: 28px; }
-  .card { padding: 10px 14px; gap: 10px; }
-  .cardTitle { font-size: 0.72rem; }
+  /* Hide both floating cards on mobile — they overlap the headline */
+  .card { display: none; }
+  .sub { font-size: 0.9rem; margin-bottom: 28px; }
+  .badge { margin-bottom: 18px; }
+  .inner { padding-top: calc(var(--nav-h) + 16px); padding-bottom: 40px; }
 }
 
 @media (max-width: 480px) {
-  .h1Line1, .h1Line2 { font-size: 2.6rem; }
-  .cardRight { display: none; }
+  .h1Line1, .h1Line2 { font-size: clamp(2.3rem, 8vw, 3rem); }
 }
