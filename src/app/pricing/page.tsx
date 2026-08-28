@@ -61,7 +61,7 @@ export default function PricingPage() {
 
       {/* Plans grid */}
       <section className="section">
-        <div className="container" style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:24}}>
+        <div className="container pricing-page-grid">
           {PLANS.map(plan=>(
             <div key={plan.name} style={{
               position:"relative",padding:"40px 36px",

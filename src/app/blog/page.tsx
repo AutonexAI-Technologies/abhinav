@@ -24,7 +24,7 @@ export default function BlogPage() {
       {/* Hero */}
       <section style={{ padding: "80px 0 56px", borderBottom: "1px solid rgba(0,200,240,0.06)" }}>
         <div className="container">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 64, alignItems: "end" }}>
+          <div className="blog-hero-grid">
             <div>
               <span className="eyebrow" style={{ display: "block", marginBottom: 16 }}>Knowledge Base</span>
               <h1 className="d-hero" style={{ fontSize: "clamp(2.8rem,7vw,6rem)", marginBottom: 20 }}>
@@ -98,12 +98,12 @@ export default function BlogPage() {
             <>
               {/* Featured first post */}
               {filtered[0] && (
-                <Link href={`/blog/${filtered[0].slug}`} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, background: "rgba(12,13,22,0.8)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "var(--r-2xl)", overflow: "hidden", marginBottom: 24, textDecoration: "none", transition: "all .3s var(--ease)" }}>
-                  <div style={{ minHeight: 320, background: "linear-gradient(135deg, rgba(0,200,240,0.08), rgba(12,13,22,0.9))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "5rem", borderRight: "1px solid rgba(0,200,240,0.06)" }}>
+                <Link href={`/blog/${filtered[0].slug}`} className="blog-featured-card" style={{ background: "rgba(12,13,22,0.8)", border: "1px solid rgba(255,255,255,0.06)", marginBottom: 24, textDecoration: "none", transition: "all .3s var(--ease)" }}>
+                  <div style={{ minHeight: 280, background: "linear-gradient(135deg, rgba(0,200,240,0.08), rgba(12,13,22,0.9))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "5rem", borderRight: "1px solid rgba(0,200,240,0.06)" }}>
                     {filtered[0].emoji}
                   </div>
                   <div style={{ padding: "40px 44px", display: "flex", flexDirection: "column", gap: 14 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
                       <span style={{ padding: "4px 14px", borderRadius: "9999px", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: filtered[0].categoryColor, background: `${filtered[0].categoryColor}18`, border: `1px solid ${filtered[0].categoryColor}30` }}>
                         {filtered[0].category}
                       </span>
@@ -133,7 +133,7 @@ export default function BlogPage() {
 
               {/* Rest in grid */}
               {filtered.length > 1 && (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+                <div className="blog-posts-grid">
                   {filtered.slice(1).map(post => (
                     <Link key={post.slug} href={`/blog/${post.slug}`} style={{ display: "flex", flexDirection: "column", background: "rgba(12,13,22,0.75)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "var(--r-xl)", overflow: "hidden", textDecoration: "none", transition: "all .3s var(--ease)" }}>
                       <div style={{ height: 160, background: "linear-gradient(135deg, rgba(0,200,240,0.06), rgba(12,13,22,0.9))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "3.2rem", borderBottom: "1px solid rgba(0,200,240,0.05)" }}>

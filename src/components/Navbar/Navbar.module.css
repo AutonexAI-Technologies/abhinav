@@ -1,106 +1,398 @@
 .nav {
-  position: fixed; top:0; left:0; right:0; z-index:200;
-  height: var(--nav-h);
-  transition: background 0.4s ease, border-bottom 0.4s ease;
-}
-.scrolled {
-  background: rgba(7,8,15,0.96);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border-bottom: 1px solid rgba(0,200,240,0.10);
-  box-shadow: 0 4px 40px rgba(0,0,0,0.6);
-}
-.inner { height:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; }
-
-.logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; z-index:201; }
-.logoMark {
-  width:34px; height:34px; border-radius:8px;
-  background: linear-gradient(135deg,#00C8F0,#005f77);
-  color:#07080f; font-family:var(--ff-display); font-size:1.1rem;
-  display:flex; align-items:center; justify-content:center; flex-shrink:0;
-}
-.logoText { font-family:var(--ff-ui); font-size:0.9rem; font-weight:700; letter-spacing:0.08em; color:var(--cream); text-transform:uppercase; }
-.logoText em { color:var(--blue); font-style:normal; }
-
-.links { display:flex; align-items:center; gap:2px; flex:1; justify-content:center; }
-.link { font-size:0.82rem; font-weight:500; color:var(--muted); padding:8px 12px; border-radius:var(--r-pill); transition:color .2s,background .2s; white-space:nowrap; }
-.link:hover { color:var(--cream); background:rgba(255,255,255,0.04); }
-.active { color:var(--blue) !important; background:var(--blue-subtle) !important; }
-
-.cta { display:flex; align-items:center; gap:10px; flex-shrink:0; z-index:201; }
-.burger { display:none; color:var(--muted); padding:6px; cursor:pointer; z-index:201; }
-
-/* ── Mobile drawer ── */
-.drawer {
   position: fixed;
-  top: var(--nav-h);   /* starts BELOW the navbar — never overlaps */
-  left: 0; right: 0; bottom: 0;
-  z-index: 199;
-  background: rgba(7,8,15,0.98);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: var(--nav-h);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scrolled {
+  background: rgba(7, 8, 15, 0.95);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid rgba(0, 200, 240, 0.12);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+}
+
+.navDrawerOpen {
+  background: #07080f !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.inner {
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+  z-index: 201;
+}
+
+.logoMark {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00C8F0 0%, #007799 100%);
+  color: #07080f;
+  font-family: var(--ff-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .28s ease;
-  overflow-y: auto;
+  flex-shrink: 0;
+  box-shadow: 0 2px 14px rgba(0, 200, 240, 0.35);
 }
-.drawerOpen { opacity:1; pointer-events:all; }
 
-.drawerContent {
+.logoText {
+  font-family: var(--ff-ui);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  text-transform: uppercase;
+}
+
+.logoText em {
+  color: var(--blue);
+  font-style: normal;
+}
+
+/* ── Desktop Links ── */
+.links {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 2px;
-  width: 100%;
-  padding: 24px 32px 40px;
-  max-height: 100%;
-  overflow-y: auto;
+  flex: 1;
+  justify-content: center;
 }
 
-.drawerLink {
-  font-family: var(--ff-display);
-  font-size: clamp(1.4rem, 5vw, 2.2rem);
+.link {
+  font-size: 0.82rem;
+  font-weight: 500;
   color: var(--muted);
-  padding: 10px 24px;
-  border-radius: var(--r-lg);
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--cream);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.active {
+  color: var(--blue) !important;
+  background: var(--blue-subtle) !important;
+  font-weight: 600;
+}
+
+/* ── CTA / Burger ── */
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  z-index: 201;
+}
+
+.bookBtn {
+  font-size: 0.82rem;
+  padding: 0.65rem 1.4rem;
+}
+
+.burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: var(--cream);
+  cursor: pointer;
+  z-index: 201;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.burger:hover {
+  background: rgba(0, 200, 240, 0.12);
+  border-color: rgba(0, 200, 240, 0.25);
+  color: var(--blue);
+}
+
+/* ============================================================
+   LUXURY MOBILE DRAWER
+   ============================================================ */
+.drawer {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 199;
+  background: #07080f; /* 100% solid, deep black background */
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.drawerOpen {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.drawerInner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100dvh - var(--nav-h));
+  padding: 16px 20px 28px;
+  max-width: 540px;
+  margin: 0 auto;
   width: 100%;
-  text-align: center;
-  transition: color .2s, background .2s;
-  line-height: 1.2;
-}
-.drawerLink:hover { color:var(--cream); background:rgba(255,255,255,0.03); }
-.drawerActive { color:var(--blue) !important; }
-
-/* ── Responsive ── */
-@media (max-width:1100px) {
-  .link { font-size:0.78rem; padding:8px 10px; }
 }
 
-@media (max-width:900px) {
-  .links { display:none; }
-  .burger { display:flex; }
-  /* Keep Book a Call button visible on tablet but hide text on very small */
-  .cta .btn { font-size:0.78rem; padding:0.5rem 1rem; }
+/* ── Menu Items List ── */
+.drawerList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
 }
 
-@media (max-width:480px) {
-  .logoText { font-size:0.78rem; letter-spacing:0.04em; }
-  .cta .btn span { display:none; }   /* hide "Book a Call" text, show only icon */
-  .drawerLink { font-size:clamp(1.2rem,6vw,1.8rem); padding:8px 16px; }
-  .drawerContent { gap:0; padding:16px 20px 32px; }
+.drawerItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
 }
 
-@media (max-width:375px) {
-  .logoMark { width:28px; height:28px; font-size:0.9rem; }
-  .drawerLink { font-size:1.1rem; }
+.drawerItem:active {
+  background: rgba(0, 200, 240, 0.08);
+  border-color: rgba(0, 200, 240, 0.20);
+  transform: scale(0.99);
 }
 
-/* Very tall phones or landscape — ensure drawer scrolls if needed */
-@media (max-height:600px) {
-  .drawerContent { justify-content:flex-start; padding-top:20px; }
-  .drawerLink { font-size:1rem; padding:6px 16px; }
+.drawerItemActive {
+  background: linear-gradient(90deg, rgba(0, 200, 240, 0.12), rgba(0, 200, 240, 0.03)) !important;
+  border: 1px solid rgba(0, 200, 240, 0.28) !important;
+}
+
+.drawerItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.drawerIconBox {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.55);
+  flex-shrink: 0;
+  transition: color 0.2s, background 0.2s;
+}
+
+.drawerIconBoxActive {
+  background: rgba(0, 200, 240, 0.18) !important;
+  border-color: rgba(0, 200, 240, 0.35) !important;
+  color: #00C8F0 !important;
+}
+
+.drawerItemLabel {
+  font-family: var(--ff-ui);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 0.01em;
+}
+
+.drawerItemActive .drawerItemLabel {
+  color: #00C8F0;
+  font-weight: 700;
+}
+
+.drawerItemRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.drawerBadge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(0, 200, 240, 0.10);
+  border: 1px solid rgba(0, 200, 240, 0.22);
+  color: #00C8F0;
+}
+
+.drawerArrow {
+  color: rgba(255, 255, 255, 0.25);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.drawerItem:hover .drawerArrow,
+.drawerItemActive .drawerArrow {
+  color: #00C8F0;
+  transform: translateX(2px);
+}
+
+/* ── Bottom Section ── */
+.drawerFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.drawerPrimaryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0.95rem 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #00C8F0 0%, #0096b3 100%);
+  color: #07080f;
+  font-family: var(--ff-ui);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(0, 200, 240, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.drawerPrimaryBtn:active {
+  transform: scale(0.98);
+}
+
+/* ── Socials Row ── */
+.drawerSocials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.drawerSocialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.drawerSocialLink:active {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--cream);
+}
+
+.waDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+@media (max-width: 1100px) {
+  .link {
+    font-size: 0.78rem;
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .links {
+    display: none;
+  }
+  .burger {
+    display: flex;
+  }
+  .bookBtn {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoText {
+    font-size: 0.82rem;
+  }
+  .drawerInner {
+    padding: 12px 16px 24px;
+  }
+  .drawerItem {
+    padding: 10px 12px;
+  }
+  .drawerIconBox {
+    width: 32px;
+    height: 32px;
+  }
+  .drawerItemLabel {
+    font-size: 0.9rem;
+  }
+  .drawerPrimaryBtn {
+    padding: 0.85rem 1.4rem;
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .logoMark {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+  }
+  .drawerSocialLink {
+    font-size: 0.7rem;
+    padding: 8px 10px;
+  }
 }

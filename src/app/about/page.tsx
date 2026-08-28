@@ -101,14 +101,7 @@ export default function AboutPage() {
           }}
         />
         <div className="container">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 72,
-              alignItems: "center",
-            }}
-          >
+          <div className="about-hero-grid">
             {/* Content */}
             <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
               <span
@@ -162,13 +155,7 @@ export default function AboutPage() {
               </p>
 
               {/* Credentials */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "8px 16px",
-                }}
-              >
+              <div className="about-credentials-grid">
                 {CREDENTIALS.map((c) => (
                   <div
                     key={c}
@@ -320,13 +307,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 16,
-            }}
-          >
+          <div className="about-values-grid">
             {VALUES.map((v) => (
               <div
                 key={v.title}
@@ -482,11 +463,7 @@ export default function AboutPage() {
             {TIMELINE.map((m, i) => (
               <div
                 key={m.year}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "80px 1fr",
-                  gap: 28,
-                }}
+                className="about-timeline-item"
               >
                 {/* Year + connector line */}
                 <div

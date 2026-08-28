@@ -5,7 +5,7 @@ import HomeAbout from "@/components/home/HomeAbout";
 import HomeServices from "@/components/home/HomeServices";
 import HomeProcess from "@/components/home/HomeProcess";
 import HomeTransformations from "@/components/home/HomeTransformations";
-import HomePricing from "@/components/home/HomePricing";
+
 import HomeCTA from "@/components/home/HomeCTA";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function HomePage() {
       <HomeServices />
       <HomeProcess />
       <HomeTransformations />
-      <HomePricing />
+
       <HomeCTA />
     </>
   );

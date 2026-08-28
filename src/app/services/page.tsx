@@ -82,13 +82,10 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container" style={{display:"flex",flexDirection:"column",gap:28}}>
           {SERVICES.map(s=>(
-            <div key={s.title} style={{
-              display:"grid",gridTemplateColumns:"1fr 2fr",gap:56,padding:"44px 48px",
+            <div key={s.title} className="services-card-item" style={{
               background:s.featured?"linear-gradient(145deg,rgba(0,200,240,0.06),rgba(12,13,22,0.88))":"rgba(12,13,22,0.72)",
               border:`1px solid ${s.featured?"rgba(0,200,240,0.28)":"rgba(255,255,255,0.05)"}`,
-              borderRadius:"var(--r-2xl)",
               boxShadow:s.featured?"var(--sh-blue)":"none",
-              alignItems:"start",
             }}>
               <div style={{display:"flex",flexDirection:"column",gap:20}}>
                 <div style={{display:"inline-block",padding:"3px 14px",borderRadius:"9999px",fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.14em",textTransform:"uppercase",color:s.featured?"#07080f":"var(--blue)",background:s.featured?"var(--grad-blue)":"var(--blue-subtle)",border:s.featured?"none":"1px solid var(--blue-border)",width:"fit-content"}}>{s.badge}</div>
@@ -131,7 +128,7 @@ export default function ServicesPage() {
             <span className="eyebrow">How It Works</span>
             <h2 className="d-xl">The Process, <span className="text-blue">Step by Step</span></h2>
           </div>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:20}}>
+          <div className="services-process-grid">
             {PROCESS.map(p=>(
               <div key={p.step} className="glass" style={{padding:"32px 24px",display:"flex",flexDirection:"column",gap:16}}>
                 <div style={{fontFamily:"var(--ff-display)",fontSize:"3.2rem",color:"rgba(0,200,240,0.15)",lineHeight:1}}>{p.step}</div>

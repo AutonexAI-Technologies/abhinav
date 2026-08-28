@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap');
+@import "tailwindcss";
 
 /* ============================================================
    ABHINAV LIFTS — Design System
@@ -391,67 +391,245 @@ input, textarea, select { font: inherit; }
 }
 
 /* ============================================================
-   RESPONSIVE — INNER PAGE HEROES & SECTIONS
+   RESPONSIVE — INNER PAGE GRIDS & LAYOUTS
    ============================================================ */
-@media (max-width: 768px) {
-  /* All inner page section paddings */
-  section[style*="clamp"] {
-    overflow-x: hidden;
-  }
-  /* Ensure no horizontal overflow */
-  body { overflow-x: hidden; }
 
-  /* Pricing cards on inner /pricing page — stack */
+/* ── About Page ── */
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.about-timeline-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 28px;
+}
+.about-credentials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+}
+
+/* ── Services Page ── */
+.services-card-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 56px;
+  padding: 44px 48px;
+  border-radius: var(--r-2xl);
+  align-items: start;
+}
+.services-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* ── Diet Plans Page ── */
+.diet-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.diet-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* ── Transformations Page ── */
+.transformations-story-card {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.transformations-story-card.reverse {
+  grid-template-columns: 2fr 1fr;
+}
+.transformations-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* ── Blog Pages ── */
+.blog-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 64px;
+  align-items: end;
+}
+.blog-featured-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+}
+.blog-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.blog-post-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 64px;
+  align-items: start;
+}
+.blog-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ── Tools Page ── */
+.tools-card-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 56px;
+  padding: 44px 48px;
+  border-radius: var(--r-2xl);
+  align-items: center;
+}
+.tools-card-item.reverse {
+  grid-template-columns: 2fr 1fr;
+}
+
+/* ── Pricing Page ── */
+.pricing-page-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* ── TABLET BREAKPOINT (<= 1024px) ── */
+@media (max-width: 1024px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .services-card-item {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 36px 32px;
+  }
+  .services-process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .diet-principles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .diet-plans-grid {
+    grid-template-columns: 1fr;
+  }
+  .transformations-story-card,
+  .transformations-story-card.reverse {
+    grid-template-columns: 1fr;
+  }
+  .transformations-timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .blog-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .blog-featured-card {
+    grid-template-columns: 1fr;
+  }
+  .blog-posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .blog-post-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .blog-related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tools-card-item,
+  .tools-card-item.reverse {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 36px 32px;
+  }
   .pricing-page-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Services grid on /services page */
-  .services-page-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* About page two-col grids */
-  .about-page-grid {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-  }
-
-  /* Transformations page grids */
-  .transforms-page-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Tools page card grid */
-  .tools-page-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Blog page grid */
-  .blog-page-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Diet plans page grid */
-  .diet-page-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 480px) {
-  /* Make all Bebas Neue headings scale properly */
-  h1 { font-size: clamp(2rem, 9vw, 3rem) !important; line-height: 1.05 !important; }
-  h2 { font-size: clamp(1.6rem, 7vw, 2.5rem) !important; }
-
-  /* Stat grids — 2 per row max */
-  .stat-grid-4 {
-    grid-template-columns: repeat(2, 1fr) !important;
+/* ── MOBILE BREAKPOINT (<= 768px) ── */
+@media (max-width: 768px) {
+  .about-values-grid {
+    grid-template-columns: 1fr;
   }
+  .about-timeline-item {
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+  }
+  .about-credentials-grid {
+    grid-template-columns: 1fr;
+  }
+  .services-card-item {
+    padding: 28px 20px;
+    border-radius: var(--r-xl);
+  }
+  .services-process-grid {
+    grid-template-columns: 1fr;
+  }
+  .diet-principles-grid {
+    grid-template-columns: 1fr;
+  }
+  .transformations-timeline-grid {
+    grid-template-columns: 1fr;
+  }
+  .blog-posts-grid {
+    grid-template-columns: 1fr;
+  }
+  .blog-related-grid {
+    grid-template-columns: 1fr;
+  }
+  .tools-card-item,
+  .tools-card-item.reverse {
+    padding: 28px 20px;
+    border-radius: var(--r-xl);
+  }
+  .btn-lg {
+    width: 100%;
+    justify-content: center;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+}
 
-  /* Ensure all buttons are full width on small mobile */
-  .mobile-full-btn {
-    width: 100% !important;
-    justify-content: center !important;
+/* ── SMALL MOBILE BREAKPOINT (<= 480px) ── */
+@media (max-width: 480px) {
+  .services-card-item,
+  .tools-card-item,
+  .tools-card-item.reverse {
+    padding: 24px 16px;
+  }
+  .about-timeline-item {
+    grid-template-columns: 48px 1fr;
+    gap: 12px;
   }
 }
 

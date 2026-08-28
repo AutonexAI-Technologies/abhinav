@@ -256,14 +256,10 @@ export default function TransformationsPage() {
             {TESTIMONIALS.map((t, i) => (
               <div
                 key={t.name}
+                className={`transformations-story-card ${i % 2 !== 0 ? "reverse" : ""}`}
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: i % 2 === 0 ? "1fr 2fr" : "2fr 1fr",
-                  gap: 0,
                   background: "#09090b",
                   border: "1px solid rgba(255,255,255,0.06)",
-                  borderRadius: 20,
-                  overflow: "hidden",
                 }}
               >
                 {/* Stats panel */}
@@ -518,14 +514,10 @@ export default function TransformationsPage() {
           </div>
 
           <div
+            className="transformations-timeline-grid"
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 2,
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: 20,
-              overflow: "hidden",
             }}
           >
             {TIMELINE.map((t, i) => (

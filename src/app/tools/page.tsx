@@ -57,15 +57,9 @@ export default function ToolsPage() {
       <section className="section">
         <div className="container" style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           {TOOLS.map((tool, i) => (
-            <div key={tool.title} style={{
-              display: "grid",
-              gridTemplateColumns: i % 2 === 0 ? "1fr 2fr" : "2fr 1fr",
-              gap: 56,
-              padding: "44px 48px",
+            <div key={tool.title} className={`tools-card-item ${i % 2 !== 0 ? "reverse" : ""}`} style={{
               background: "rgba(12,13,22,0.75)",
               border: "1px solid rgba(255,255,255,0.05)",
-              borderRadius: "var(--r-2xl)",
-              alignItems: "center",
             }}>
               {i % 2 !== 0 && (
                 <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -85,7 +79,7 @@ export default function ToolsPage() {
                   <p style={{ fontSize: "0.85rem", color: tool.accent, fontWeight: 600, letterSpacing: "0.04em" }}>{tool.subtitle}</p>
                 </div>
                 <p style={{ fontSize: "0.95rem", color: "var(--muted)", lineHeight: 1.85 }}>{tool.desc}</p>
-                <Link href={tool.href} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "0.75rem 1.75rem", borderRadius: 999, background: "#00C8F0", color: "#09090b", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem", textDecoration: "none", boxShadow: "0 4px 20px rgba(0,200,240,0.22)" }}>
+                <Link href={tool.href} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "0.75rem 1.75rem", borderRadius: 999, background: "#00C8F0", color: "#09090b", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem", textDecoration: "none", boxShadow: "0 4px 20px rgba(0,200,240,0.22)", width: "fit-content" }}>
                   Open Calculator <ArrowRight size={15} />
                 </Link>
               </div>

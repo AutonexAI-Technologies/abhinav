@@ -69,7 +69,7 @@ export default function DietPlansPage() {
       {/* Principles */}
       <section className="section section-alt">
         <div className="container">
-          <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:20}}>
+          <div className="diet-principles-grid">
             {PRINCIPLES.map(p=>(
               <div key={p.title} className="glass" style={{padding:"28px 22px",display:"flex",flexDirection:"column",gap:12}}>
                 <span style={{fontSize:"1.6rem"}}>{p.icon}</span>
@@ -83,7 +83,7 @@ export default function DietPlansPage() {
 
       {/* Plan Cards */}
       <section className="section">
-        <div className="container" style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:28}}>
+        <div className="container diet-plans-grid">
           {PLANS.map(plan=>(
             <div key={plan.type} style={{background:plan.subtle,border:`1px solid ${plan.border}`,borderRadius:"var(--r-2xl)",padding:"40px 36px",display:"flex",flexDirection:"column",gap:24}}>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>

@@ -66,14 +66,14 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* ── ARTICLE BODY ── */}
       <section style={{ padding: "56px 0 80px" }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: 72, alignItems: "start", maxWidth: 1180, margin: "0 auto" }}>
+        <div className="container blog-post-layout" style={{ maxWidth: 1180, margin: "0 auto" }}>
 
           {/* ── LEFT: Full Article ── */}
           <div>
             {/* Author */}
-            <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "16px 20px", background: "rgba(0,200,240,0.04)", border: "1px solid rgba(0,200,240,0.10)", borderRadius: "var(--r-xl)", marginBottom: 40 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "16px 20px", background: "rgba(0,200,240,0.04)", border: "1px solid rgba(0,200,240,0.10)", borderRadius: "var(--r-xl)", marginBottom: 40, flexWrap: "wrap" }}>
               <div style={{ width: 44, height: 44, borderRadius: "50%", background: "var(--grad-blue)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--ff-display)", color: "#07080f", fontWeight: 700, fontSize: "1.2rem", flexShrink: 0 }}>A</div>
-              <div style={{ flex: 1 }}>
+              <div style={{ flex: 1, minWidth: 200 }}>
                 <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--cream)" }}>Abhinav</div>
                 <div style={{ fontSize: "0.72rem", color: "var(--faint)" }}>Online Coach · Hybrid Athlete · Content Creator · Hyderabad</div>
               </div>
@@ -182,7 +182,7 @@ export default async function BlogPostPage({ params }: Props) {
       {related.length > 0 && (
         <section style={{ padding: "60px 0", background: "rgba(12,13,22,0.65)", borderTop: "1px solid rgba(0,200,240,0.05)" }}>
           <div className="container">
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 36 }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 36, flexWrap: "wrap", gap: 12 }}>
               <h2 style={{ fontFamily: "var(--ff-display)", fontSize: "2rem", color: "var(--cream)" }}>
                 More to <span className="text-blue">Read</span>
               </h2>
@@ -190,7 +190,7 @@ export default async function BlogPostPage({ params }: Props) {
                 All Articles <ArrowRight size={13} />
               </Link>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+            <div className="blog-related-grid">
               {related.map(p => (
                 <Link key={p.slug} href={`/blog/${p.slug}`} style={{ display: "flex", flexDirection: "column", background: "rgba(12,13,22,0.8)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "var(--r-xl)", overflow: "hidden", textDecoration: "none", transition: "all .3s var(--ease)" }}>
                   <div style={{ position: "relative", height: 160, overflow: "hidden" }}>
